@@ -1,4 +1,4 @@
-# Interactive Evo Analysis
+# interacreval
 
 Model comparisons and research notes on cognition and interaction.
 
