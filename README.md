@@ -17,6 +17,11 @@ All leaderboard and summary measurements are transcribed from the supplied paper
 | Terminal-outcome rates | Table 9, page 23 |
 | MetaMind, Cognizer, Claude Code configurations | Table 16, page 28 |
 | Architecture-wide mean gains | Table 17, page 28 |
+| Fabrication and clarification | Table 8, page 22 |
+| Assistant-side interaction matrix and partner measurements | Tables 11–12, page 25 |
+| Self-play and user-side capability profiles | Tables 13–14, page 26 |
+| Independent passes and alternative judges | Tables 21–22, page 32 |
+| Episode lengths and fixed-length subsample | Table 30, page 37 |
 
 The main study uses 27 cells, 30 dialogues per cell, and three independent passes:
 2,430 episodes per base model (section 4.1, page 18). The standard user is
@@ -27,6 +32,11 @@ Agent configurations are identified by both architecture and underlying model.
 Differences calculated from rounded table values are labeled in the interface;
 architecture-wide mean gains are copied directly from Table 17.
 
+The Models explorer provides 42 published measures across eight categories, with
+model selection, expanded charts, table view, and CSV export. Research links a
+selected model across its readout, capability heatmap, behavior, outcome, duration,
+and partner figures. Its pass ranges use Table 21, rather than ranges of examples.
+
 ## Example library
 
 The 100 conversations in `MarioEval_cases_en_(1)(1).zip` are illustrative examples.
@@ -34,6 +44,10 @@ The 100 conversations in `MarioEval_cases_en_(1)(1).zip` are illustrative exampl
 in `data/cases/`. Internal case and scene identifiers are not shown as page labels.
 Examples do not determine leaderboard values, outcome rates, sample sizes, or
 uncertainty estimates. No example-derived aggregate file is published.
+
+The case reader links each conversation turn to its recorded engagement signals,
+trajectory, capability judgments, and quotation evidence. These are individual
+example records and do not change the published rankings.
 
 `data/manifest.json` records source archive and paper checksums and explicitly marks
 that examples are excluded from the leaderboard.

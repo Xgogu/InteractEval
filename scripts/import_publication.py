@@ -2,6 +2,7 @@ from pathlib import Path
 import json,re,zipfile,hashlib,shutil
 import fitz
 import argparse
+from import_diagnostics import enrich_publication
 parser=argparse.ArgumentParser(description='Import published paper tables and an independent example library.')
 parser.add_argument('paper',type=Path)
 parser.add_argument('archive',type=Path)
@@ -68,6 +69,7 @@ paper={'source':'Qwen_InteractEval.pdf','sha256':hashlib.sha256(pdf_path.read_by
 for key,needle in [('facets','Table 6: Scores'),('outcomes','Table 9: Distribution')]:
  paper['tables'][key]['page']=next(i+1 for i,p in enumerate(pdf) if needle in p.get_text())
 archive=args.archive.resolve(strict=True)
+enrich_publication(paper,pdf)
 with zipfile.ZipFile(archive) as z:
  incoming=[(json.loads(z.read(n)),z.read(n)) for n in sorted(z.namelist()) if n.endswith('.json')]
 data=(root/'data').resolve()
