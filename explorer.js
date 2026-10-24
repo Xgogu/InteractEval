@@ -68,6 +68,7 @@ function journalSection(id,index,kicker,title,deck,body){return `<section id="${
 function researchArticle(){return researchIntroduction();}
 
 function afterExplorerRender(){
+  syncEditorialHeader();
   $('#app').classList.toggle('journal-app',route==='research'||route==='home');
   if(researchObserver)researchObserver.disconnect();
   if(route==='research'||route==='home'){
@@ -82,7 +83,7 @@ document.addEventListener('click',event=>{
   if(event.target.closest('[data-reset-models]')){modelSelection=null;render();}
   const nav=event.target.closest('[data-nav-menu]');
   if(nav){const id=nav.dataset.navMenu,panel=document.getElementById('nav-'+id),opening=panel.hidden;document.querySelectorAll('.restored-nav-menu').forEach(p=>p.hidden=true);document.querySelectorAll('[data-nav-menu]').forEach(b=>b.setAttribute('aria-expanded','false'));panel.hidden=!opening;nav.setAttribute('aria-expanded',String(opening));}
-  else if(!event.target.closest('.restored-nav-item')){document.querySelectorAll('.restored-nav-menu').forEach(p=>p.hidden=true);document.querySelectorAll('[data-nav-menu]').forEach(b=>b.setAttribute('aria-expanded','false'));}
+  else if(!event.target.closest('.restored-nav-item')||event.target.closest('.nav-destination')){document.querySelectorAll('.restored-nav-menu').forEach(p=>p.hidden=true);document.querySelectorAll('[data-nav-menu]').forEach(b=>b.setAttribute('aria-expanded','false'));}
   const section=event.target.closest('[data-research-section]');if(section){event.preventDefault();document.getElementById(section.dataset.researchSection)?.scrollIntoView({behavior:'smooth',block:'start'});}
   const focus=event.target.closest('[data-follow-model]');if(focus){event.preventDefault();researchFocus=focus.dataset.followModel;render();}
   const expand=event.target.closest('[data-expand-measure]');if(expand){const id=expand.dataset.expandMeasure,m=metricOf(id),dialog=$('#measure-dialog');$('#measure-body').innerHTML=`<h2>${safe(measureGuide(id).title)}</h2><p>${safe(m.label)}</p>${measureExplanation(id)}${publishedColumns(id,selectedPublicationModels())}<p>Published table values. The example library does not contribute to this comparison.</p>`;dialog.showModal();}
