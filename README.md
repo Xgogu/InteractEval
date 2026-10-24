@@ -4,6 +4,7 @@ Published results and illustrative conversations for the InteractEval study.
 
 - Website: https://xgogu.github.io/InteractEval/
 - Research: https://xgogu.github.io/InteractEval/research.html
+- Showcase: https://xgogu.github.io/InteractEval/showcase.html
 
 ## Measurement sources
 
@@ -33,9 +34,18 @@ Differences calculated from rounded table values are labeled in the interface;
 architecture-wide mean gains are copied directly from Table 17.
 
 The Models explorer provides 42 published measures across eight categories, with
-model selection, expanded charts, table view, and CSV export. Research links a
-selected model across its readout, capability heatmap, behavior, outcome, duration,
-and partner figures. Its pass ranges use Table 21, rather than ranges of examples.
+model selection, expanded charts, table view, and CSV export. Each measure includes
+a plain-language definition and reading guidance.
+
+The homepage presents findings first and links a selected model across the result
+figures. Pass ranges use Table 21, rather than ranges of examples. Conversation
+length uses a compact two-column figure and contextual comparison. Sources and
+evaluation scope are available in a collapsed reference section.
+
+Research introduces the three theoretical ideas, four instrument stages, world
+components, scenario design, and capability rubric. Its architecture panels and
+dependency-rule example are interactive. Showcase is a separate page for the
+conversation library. Legacy case routes remain available.
 
 ## Example library
 
