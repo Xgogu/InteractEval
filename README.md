@@ -1,60 +1,62 @@
 # interacteval
 
-Model comparisons and research notes on cognition and interaction.
+Published results and illustrative conversations for the InteractEval study.
 
 - Website: https://xgogu.github.io/interactive-evo-analysis/
 - Research: https://xgogu.github.io/interactive-evo-analysis/research.html
 
-## Contents
+## Measurement sources
 
-The static site includes model comparisons, six capability dimensions, scenario filters,
-case-level conversations, and a research journal. The current MarioEval English V3 casebook
-contains 76 conversations across 10 models, 898 evaluated assistant turns, and 1,796 transcript
-messages. All 76 cases have complete capability and interest-change pairs. The current
-terminal labels are 48 successful closures and 28 cases of interest exhaustion. Five cases
-include recorded red lines. Multimodal results are pending.
+All leaderboard and summary measurements are transcribed from the supplied paper,
+`assets/Qwen_InteractEval.pdf`, preserving the reported precision:
 
-Homepage summaries use the full casebook. Filters in the Evaluations section apply to that
-section. Model assignments are unbalanced; counts accompany the displayed summaries.
+| Measurements | Paper source |
+| --- | --- |
+| Base-model composite, L1-L6, stage means, L6/L5, purpose disposition | Table 4, page 19 |
+| Purpose and realism facet scores | Table 6, page 20 |
+| Terminal-outcome rates | Table 9, page 23 |
+| MetaMind, Cognizer, Claude Code configurations | Table 16, page 28 |
+| Architecture-wide mean gains | Table 17, page 28 |
 
-## Local preview
+The main study uses 27 cells, 30 dialogues per cell, and three independent passes:
+2,430 episodes per base model (section 4.1, page 18). The standard user is
+claude-5-opus. The judge is Claude Opus 5.
 
-Run `python -m http.server 8787` in this directory, then open http://127.0.0.1:8787/.
-No server-side application or build step is required.
+`data/paper-results.json` is the only source for published numerical comparisons.
+Agent configurations are identified by both architecture and underlying model.
+Differences calculated from rounded table values are labeled in the interface;
+architecture-wide mean gains are copied directly from Table 17.
 
-## Current dataset
+## Example library
 
-`data/cases/` contains the complete English V3 source records from `MarioEval_cases_en.zip`.
-The previous dataset was replaced. `data/cases.json` and `data/models.json` are derived
-exclusively from that archive. `data/manifest.json` records its SHA-256, schema version,
-counts, scoring fields, and a checksum for each source case.
+The 100 conversations in `MarioEval_cases_en_(1)(1).zip` are illustrative examples.
+`data/cases.json` indexes their roles and objectives. Complete source records remain
+in `data/cases/`. Internal case and scene identifiers are not shown as page labels.
+Examples do not determine leaderboard values, outcome rates, sample sizes, or
+uncertainty estimates. No example-derived aggregate file is published.
 
-To replace the casebook with another archive in the same schema, run:
+`data/manifest.json` records source archive and paper checksums and explicitly marks
+that examples are excluded from the leaderboard.
+
+## Updating sources
+
+Requires Python and PyMuPDF. Run:
 
 ```bash
-python scripts/import_cases.py /path/to/MarioEval_cases_en.zip
+python scripts/import_publication.py /path/to/Qwen_InteractEval.pdf /path/to/MarioEval_cases_en.zip
 ```
 
-The importer reads and summarizes the incoming archive before replacing the repository's
-`data/` directory. Published scores come from `outcome.composite` and `outcome.level_means`,
-which retain the current scoring cascade. `original_scores` is preserved in the source JSON
-and is not used for rankings. Endings come from `outcome.ending`.
+The importer extracts the specified tables from this paper layout, replaces the
+previous data directory, and copies the paper used for the displayed values.
+Review changes in the paper's table structure before importing another edition.
 
-Interest change is the last evaluated-turn interest minus the first. State movement is the
-within-case share of boolean `present_moved` values marked true; displayed model rates average
-those case rates. Red-line turn rate divides `outcome.red_line_turns` by evaluated turns,
-then averages cases. A case with red lines can have either terminal outcome.
+## Preview and publish
 
-The source facet values `science-fictional` and `nonfunctional` are mapped to the interface
-keys `sci_fi` and `non_functional` in the compact index. Complete source records stay unchanged.
+Run `python -m http.server 8788` from the repository root. GitHub Pages publishes
+`main` from the repository root. No application backend is required.
 
-## GitHub Pages
-
-The site is published from the `main` branch, repository root. `.nojekyll` serves the static
-files directly. Relative URLs support deployment under the repository subpath.
-
-## Sources
+## Attribution
 
 Based on [Interactive Evo](https://github.com/Jewelina95/interactive-evo).
-The existing MIT license is retained. Provider asset sources are recorded in
-[assets/providers/sources.json](assets/providers/sources.json).
+The original MIT license is retained. Provider asset sources are listed in
+`assets/providers/sources.json`.

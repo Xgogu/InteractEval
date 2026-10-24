@@ -1,0 +1,590 @@
+{
+  "source": "Qwen_InteractEval.pdf",
+  "sha256": "6a73b1277dabec4ceeddf1ff75c417e546cf193321a6ce40792b6dce6221f28e",
+  "scope": {
+    "scenario_cells": 27,
+    "dialogues_per_cell": 30,
+    "passes": 3,
+    "episodes_per_model": 2430,
+    "standard_user": "claude-5-opus",
+    "judge": "Claude Opus 5"
+  },
+  "tables": {
+    "models": {
+      "table": 4,
+      "page": 19
+    },
+    "facets": {
+      "table": 6,
+      "page": 20
+    },
+    "outcomes": {
+      "table": 9,
+      "page": 23
+    },
+    "agents": {
+      "table": 16,
+      "page": 28
+    },
+    "architecture_gains": {
+      "table": 17,
+      "page": 28
+    }
+  },
+  "models": [
+    {
+      "name": "claude-opus-5.5",
+      "composite": 0.636,
+      "levels": [
+        0.798,
+        0.775,
+        0.747,
+        0.712,
+        0.564,
+        0.515
+      ],
+      "stages": [
+        0.787,
+        0.73,
+        0.54
+      ],
+      "coherence_ratio": 0.914,
+      "purpose_delta": -0.113,
+      "closure": 0.124,
+      "exhaustion": 0.8759999999999999,
+      "functional_closure": 0.231,
+      "nonfunctional_closure": 0.038,
+      "facets": {
+        "functional": 0.68,
+        "mixed": 0.662,
+        "nonfunctional": 0.567,
+        "realistic": 0.67,
+        "stylized": 0.639,
+        "science-fictional": 0.599
+      }
+    },
+    {
+      "name": "gpt-6-astra",
+      "composite": 0.629,
+      "levels": [
+        0.792,
+        0.769,
+        0.739,
+        0.704,
+        0.56,
+        0.509
+      ],
+      "stages": [
+        0.781,
+        0.722,
+        0.535
+      ],
+      "coherence_ratio": 0.91,
+      "purpose_delta": -0.106,
+      "closure": 0.105,
+      "exhaustion": 0.895,
+      "functional_closure": 0.20600000000000002,
+      "nonfunctional_closure": 0.035,
+      "facets": {
+        "functional": 0.671,
+        "mixed": 0.652,
+        "nonfunctional": 0.565,
+        "realistic": 0.663,
+        "stylized": 0.632,
+        "science-fictional": 0.593
+      }
+    },
+    {
+      "name": "claude-fable-5.1",
+      "composite": 0.616,
+      "levels": [
+        0.79,
+        0.77,
+        0.737,
+        0.696,
+        0.539,
+        0.488
+      ],
+      "stages": [
+        0.78,
+        0.716,
+        0.514
+      ],
+      "coherence_ratio": 0.906,
+      "purpose_delta": -0.111,
+      "closure": 0.105,
+      "exhaustion": 0.895,
+      "functional_closure": 0.20600000000000002,
+      "nonfunctional_closure": 0.036000000000000004,
+      "facets": {
+        "functional": 0.662,
+        "mixed": 0.637,
+        "nonfunctional": 0.551,
+        "realistic": 0.651,
+        "stylized": 0.615,
+        "science-fictional": 0.583
+      }
+    },
+    {
+      "name": "claude-5-opus",
+      "composite": 0.54,
+      "levels": [
+        0.777,
+        0.754,
+        0.708,
+        0.655,
+        0.417,
+        0.373
+      ],
+      "stages": [
+        0.766,
+        0.682,
+        0.395
+      ],
+      "coherence_ratio": 0.894,
+      "purpose_delta": -0.146,
+      "closure": 0.11800000000000001,
+      "exhaustion": 0.882,
+      "functional_closure": 0.21899999999999997,
+      "nonfunctional_closure": 0.034,
+      "facets": {
+        "functional": 0.6,
+        "mixed": 0.568,
+        "nonfunctional": 0.454,
+        "realistic": 0.58,
+        "stylized": 0.55,
+        "science-fictional": 0.492
+      }
+    },
+    {
+      "name": "gpt-5.6-sol",
+      "composite": 0.515,
+      "levels": [
+        0.784,
+        0.752,
+        0.693,
+        0.638,
+        0.377,
+        0.334
+      ],
+      "stages": [
+        0.768,
+        0.666,
+        0.356
+      ],
+      "coherence_ratio": 0.887,
+      "purpose_delta": -0.012,
+      "closure": 0.045,
+      "exhaustion": 0.955,
+      "functional_closure": 0.078,
+      "nonfunctional_closure": 0.018000000000000002,
+      "facets": {
+        "functional": 0.516,
+        "mixed": 0.523,
+        "nonfunctional": 0.504,
+        "realistic": 0.549,
+        "stylized": 0.513,
+        "science-fictional": 0.482
+      }
+    },
+    {
+      "name": "qwen3.8-max",
+      "composite": 0.482,
+      "levels": [
+        0.772,
+        0.745,
+        0.687,
+        0.615,
+        0.326,
+        0.287
+      ],
+      "stages": [
+        0.759,
+        0.651,
+        0.307
+      ],
+      "coherence_ratio": 0.881,
+      "purpose_delta": -0.092,
+      "closure": 0.091,
+      "exhaustion": 0.909,
+      "functional_closure": 0.142,
+      "nonfunctional_closure": 0.027000000000000003,
+      "facets": {
+        "functional": 0.514,
+        "mixed": 0.511,
+        "nonfunctional": 0.422,
+        "realistic": 0.529,
+        "stylized": 0.498,
+        "science-fictional": 0.421
+      }
+    },
+    {
+      "name": "gemini-3.8-flash",
+      "composite": 0.45,
+      "levels": [
+        0.772,
+        0.745,
+        0.672,
+        0.6,
+        0.272,
+        0.235
+      ],
+      "stages": [
+        0.759,
+        0.636,
+        0.254
+      ],
+      "coherence_ratio": 0.865,
+      "purpose_delta": 0.004,
+      "closure": 0.02,
+      "exhaustion": 0.98,
+      "functional_closure": 0.043,
+      "nonfunctional_closure": 0.002,
+      "facets": {
+        "functional": 0.44,
+        "mixed": 0.465,
+        "nonfunctional": 0.444,
+        "realistic": 0.492,
+        "stylized": 0.456,
+        "science-fictional": 0.403
+      }
+    },
+    {
+      "name": "deepseek-v4-pro",
+      "composite": 0.43,
+      "levels": [
+        0.793,
+        0.781,
+        0.725,
+        0.661,
+        0.186,
+        0.155
+      ],
+      "stages": [
+        0.787,
+        0.693,
+        0.17
+      ],
+      "coherence_ratio": 0.832,
+      "purpose_delta": -0.13,
+      "closure": 0.094,
+      "exhaustion": 0.9059999999999999,
+      "functional_closure": 0.161,
+      "nonfunctional_closure": 0.027999999999999997,
+      "facets": {
+        "functional": 0.486,
+        "mixed": 0.448,
+        "nonfunctional": 0.356,
+        "realistic": 0.462,
+        "stylized": 0.426,
+        "science-fictional": 0.404
+      }
+    },
+    {
+      "name": "kimi-k3",
+      "composite": 0.425,
+      "levels": [
+        0.769,
+        0.739,
+        0.665,
+        0.59,
+        0.215,
+        0.208
+      ],
+      "stages": [
+        0.754,
+        0.628,
+        0.212
+      ],
+      "coherence_ratio": 0.965,
+      "purpose_delta": -0.07,
+      "closure": 0.054000000000000006,
+      "exhaustion": 0.946,
+      "functional_closure": 0.11199999999999999,
+      "nonfunctional_closure": 0.013000000000000001,
+      "facets": {
+        "functional": 0.453,
+        "mixed": 0.439,
+        "nonfunctional": 0.383,
+        "realistic": 0.458,
+        "stylized": 0.421,
+        "science-fictional": 0.396
+      }
+    },
+    {
+      "name": "glm-5.3-flash",
+      "composite": 0.414,
+      "levels": [
+        0.763,
+        0.74,
+        0.659,
+        0.579,
+        0.211,
+        0.183
+      ],
+      "stages": [
+        0.752,
+        0.619,
+        0.197
+      ],
+      "coherence_ratio": 0.868,
+      "purpose_delta": 0.018,
+      "closure": 0.01,
+      "exhaustion": 0.99,
+      "functional_closure": 0.018000000000000002,
+      "nonfunctional_closure": 0.002,
+      "facets": {
+        "functional": 0.403,
+        "mixed": 0.42,
+        "nonfunctional": 0.421,
+        "realistic": 0.451,
+        "stylized": 0.415,
+        "science-fictional": 0.377
+      }
+    }
+  ],
+  "agents": [
+    {
+      "base_model": "claude-opus-5.5",
+      "architecture": "MetaMind",
+      "composite": 0.657,
+      "active_adaptation": 0.564,
+      "purpose_delta": -0.097
+    },
+    {
+      "base_model": "claude-opus-5.5",
+      "architecture": "Cognizer",
+      "composite": 0.668,
+      "active_adaptation": 0.58,
+      "purpose_delta": -0.131
+    },
+    {
+      "base_model": "claude-opus-5.5",
+      "architecture": "Claude Code",
+      "composite": 0.665,
+      "active_adaptation": 0.577,
+      "purpose_delta": -0.147
+    },
+    {
+      "base_model": "gpt-6-astra",
+      "architecture": "MetaMind",
+      "composite": 0.651,
+      "active_adaptation": 0.558,
+      "purpose_delta": -0.097
+    },
+    {
+      "base_model": "gpt-6-astra",
+      "architecture": "Cognizer",
+      "composite": 0.663,
+      "active_adaptation": 0.573,
+      "purpose_delta": -0.117
+    },
+    {
+      "base_model": "gpt-6-astra",
+      "architecture": "Claude Code",
+      "composite": 0.652,
+      "active_adaptation": 0.563,
+      "purpose_delta": -0.128
+    },
+    {
+      "base_model": "claude-fable-5.1",
+      "architecture": "MetaMind",
+      "composite": 0.642,
+      "active_adaptation": 0.543,
+      "purpose_delta": -0.089
+    },
+    {
+      "base_model": "claude-fable-5.1",
+      "architecture": "Cognizer",
+      "composite": 0.649,
+      "active_adaptation": 0.553,
+      "purpose_delta": -0.133
+    },
+    {
+      "base_model": "claude-fable-5.1",
+      "architecture": "Claude Code",
+      "composite": 0.646,
+      "active_adaptation": 0.55,
+      "purpose_delta": -0.149
+    },
+    {
+      "base_model": "claude-5-opus",
+      "architecture": "MetaMind",
+      "composite": 0.571,
+      "active_adaptation": 0.433,
+      "purpose_delta": -0.123
+    },
+    {
+      "base_model": "claude-5-opus",
+      "architecture": "Cognizer",
+      "composite": 0.587,
+      "active_adaptation": 0.455,
+      "purpose_delta": -0.179
+    },
+    {
+      "base_model": "claude-5-opus",
+      "architecture": "Claude Code",
+      "composite": 0.583,
+      "active_adaptation": 0.451,
+      "purpose_delta": -0.193
+    },
+    {
+      "base_model": "gpt-5.6-sol",
+      "architecture": "MetaMind",
+      "composite": 0.545,
+      "active_adaptation": 0.396,
+      "purpose_delta": 0.009
+    },
+    {
+      "base_model": "gpt-5.6-sol",
+      "architecture": "Cognizer",
+      "composite": 0.566,
+      "active_adaptation": 0.421,
+      "purpose_delta": -0.038
+    },
+    {
+      "base_model": "gpt-5.6-sol",
+      "architecture": "Claude Code",
+      "composite": 0.554,
+      "active_adaptation": 0.41,
+      "purpose_delta": -0.043
+    },
+    {
+      "base_model": "qwen3.8-max",
+      "architecture": "MetaMind",
+      "composite": 0.519,
+      "active_adaptation": 0.352,
+      "purpose_delta": -0.068
+    },
+    {
+      "base_model": "qwen3.8-max",
+      "architecture": "Cognizer",
+      "composite": 0.538,
+      "active_adaptation": 0.38,
+      "purpose_delta": -0.123
+    },
+    {
+      "base_model": "qwen3.8-max",
+      "architecture": "Claude Code",
+      "composite": 0.526,
+      "active_adaptation": 0.37,
+      "purpose_delta": -0.141
+    },
+    {
+      "base_model": "gemini-3.8-flash",
+      "architecture": "MetaMind",
+      "composite": 0.49,
+      "active_adaptation": 0.307,
+      "purpose_delta": 0.03
+    },
+    {
+      "base_model": "gemini-3.8-flash",
+      "architecture": "Cognizer",
+      "composite": 0.509,
+      "active_adaptation": 0.332,
+      "purpose_delta": -0.03
+    },
+    {
+      "base_model": "gemini-3.8-flash",
+      "architecture": "Claude Code",
+      "composite": 0.497,
+      "active_adaptation": 0.322,
+      "purpose_delta": -0.04
+    },
+    {
+      "base_model": "deepseek-v4-pro",
+      "architecture": "MetaMind",
+      "composite": 0.473,
+      "active_adaptation": 0.233,
+      "purpose_delta": -0.085
+    },
+    {
+      "base_model": "deepseek-v4-pro",
+      "architecture": "Cognizer",
+      "composite": 0.493,
+      "active_adaptation": 0.262,
+      "purpose_delta": -0.173
+    },
+    {
+      "base_model": "deepseek-v4-pro",
+      "architecture": "Claude Code",
+      "composite": 0.482,
+      "active_adaptation": 0.252,
+      "purpose_delta": -0.191
+    },
+    {
+      "base_model": "kimi-k3",
+      "architecture": "MetaMind",
+      "composite": 0.465,
+      "active_adaptation": 0.268,
+      "purpose_delta": -0.036
+    },
+    {
+      "base_model": "kimi-k3",
+      "architecture": "Cognizer",
+      "composite": 0.488,
+      "active_adaptation": 0.3,
+      "purpose_delta": -0.111
+    },
+    {
+      "base_model": "kimi-k3",
+      "architecture": "Claude Code",
+      "composite": 0.476,
+      "active_adaptation": 0.289,
+      "purpose_delta": -0.118
+    },
+    {
+      "base_model": "glm-5.3-flash",
+      "architecture": "MetaMind",
+      "composite": 0.456,
+      "active_adaptation": 0.259,
+      "purpose_delta": 0.051
+    },
+    {
+      "base_model": "glm-5.3-flash",
+      "architecture": "Cognizer",
+      "composite": 0.477,
+      "active_adaptation": 0.286,
+      "purpose_delta": -0.014
+    },
+    {
+      "base_model": "glm-5.3-flash",
+      "architecture": "Claude Code",
+      "composite": 0.466,
+      "active_adaptation": 0.276,
+      "purpose_delta": -0.038
+    }
+  ],
+  "architecture_gains": [
+    {
+      "architecture": "MetaMind",
+      "composite": 0.033,
+      "stages": [
+        0.012,
+        0.026,
+        0.043
+      ],
+      "purpose_delta": 0.025
+    },
+    {
+      "architecture": "Cognizer",
+      "composite": 0.05,
+      "stages": [
+        0.012,
+        0.038,
+        0.066
+      ],
+      "purpose_delta": -0.029
+    },
+    {
+      "architecture": "Claude Code",
+      "composite": 0.041,
+      "stages": [
+        0.016,
+        0.024,
+        0.058
+      ],
+      "purpose_delta": -0.043
+    }
+  ]
+}
