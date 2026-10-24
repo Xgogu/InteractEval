@@ -39,8 +39,9 @@ a plain-language definition and reading guidance.
 
 The homepage presents findings first and links a selected model across the result
 figures. Pass ranges use Table 21, rather than ranges of examples. Conversation
-length uses a compact two-column figure and contextual comparison. Sources and
-evaluation scope are available in a collapsed reference section.
+length uses a compact two-column figure and contextual comparison. Paper links
+and source-navigation controls are omitted from the website; measurement
+provenance remains documented here and in the data metadata.
 
 Research introduces the three theoretical ideas, four instrument stages, world
 components, scenario design, and capability rubric. Its architecture panels and
