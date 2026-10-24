@@ -82,7 +82,7 @@ for r,content in incoming:
  scene=r['scene'];a=r['administration']
  title=scenario_titles.get(scene['scene_id'],scene['objective'].strip().split('\n')[0])
  exhibits.append(dict(id=identifier,title=title,setting=scene['facets']['realism'],information=scene['facets']['information'],purpose=scene['facets']['purpose'],assistant=a['assistant_system'],partner=a['user_system'],objective=scene['objective'],persona=scene['persona']))
-for name,value in [('paper-results.json',paper),('cases.json',exhibits),('manifest.json',{'display_name':'interacteval','case_source':archive.name,'case_sha256':hashlib.sha256(archive.read_bytes()).hexdigest(),'exhibit_count':len(exhibits),'leaderboard_source':'paper-results.json','exhibits_used_for_leaderboard':False,'paper_sha256':paper['sha256']})]:
+for name,value in [('paper-results.json',paper),('cases.json',exhibits),('manifest.json',{'display_name':'InteractEval','case_source':archive.name,'case_sha256':hashlib.sha256(archive.read_bytes()).hexdigest(),'exhibit_count':len(exhibits),'leaderboard_source':'paper-results.json','exhibits_used_for_leaderboard':False,'paper_sha256':paper['sha256']})]:
  (data/name).write_text(json.dumps(value,ensure_ascii=False,indent=2)+'\n',encoding='utf-8')
 shutil.copy2(pdf_path,root/'assets/Qwen_InteractEval.pdf')
 print(json.dumps({'models':len(models),'agent_configurations':len(agents),'exhibits':len(exhibits),'tables':paper['tables']}))

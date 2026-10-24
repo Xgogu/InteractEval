@@ -1,9 +1,9 @@
-# interacteval
+# InteractEval
 
 Published results and illustrative conversations for the InteractEval study.
 
-- Website: https://xgogu.github.io/interactive-evo-analysis/
-- Research: https://xgogu.github.io/interactive-evo-analysis/research.html
+- Website: https://xgogu.github.io/InteractEval/
+- Research: https://xgogu.github.io/InteractEval/research.html
 
 ## Measurement sources
 
