@@ -44,8 +44,11 @@ and source-navigation controls are omitted from the website; measurement
 provenance remains documented here and in the data metadata.
 
 Research introduces the three theoretical ideas, four instrument stages, world
-components, scenario design, and capability rubric. Its architecture panels and
-dependency-rule example are interactive. Showcase is a separate page for the
+components, scenario design, and capability rubric. It includes illustrated
+theoretical lenses, a four-stage architecture explorer, reconstruction record
+sheets, a 27-cell scenario map, a capability ladder, and an interactive dependency
+rule example. Conceptual diagrams do not introduce new measurements.
+Showcase is a separate page for the
 conversation library. Legacy case routes remain available.
 
 ## Example library
