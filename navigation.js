@@ -47,6 +47,8 @@ function renderEditorialNavigation(){
       ['Three theoretical ideas','State, trajectory, and initiative.','./research.html#theory','theory'],
       ['Instrument architecture','Four stages with distinct responsibilities.','./research.html#architecture','agent'],
       ['World components','Scene, latent state, and event chain.','./research.html#components','scenario'],
+      ['Time-indexed records','Follow real states and paths across turns.','./research.html#temporal-records','duration'],
+      ['Key findings','What the interaction record reveals.','./research.html#discoveries','overview'],
       ['Scenario design','Three questions define the situation.','./research.html#scenario-space','capability'],
       ['Capability rubric','Six levels and their dependency rules.','./research.html#rubric','rubric']
     ]}

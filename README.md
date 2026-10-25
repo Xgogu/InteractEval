@@ -51,6 +51,18 @@ rule example. Conceptual diagrams do not introduce new measurements.
 Showcase is a separate page for the
 conversation library. Legacy case routes remain available.
 
+Research also reproduces the vocabulary of Appendix A.3 (Box 5) and the recorded
+episodes in Tables 36–37. `data/research-evidence.json` keeps those observations
+separate from aggregate measurements. Trajectory plots use assistant turns on the
+horizontal axis, observed interest and projected Advance probability on separate
+0–1 axes, and no values after an episode has ended. Latent-state heatmaps retain
+ordinal degrees; they do not turn categories into interval measurements.
+
+`python scripts/build_research_figures.py` exports English and Chinese SVG, PNG,
+and PDF figures plus a bilingual findings brief in `assets/research/`. The website
+uses English figures and copy. The Chinese figures and bilingual brief are separate
+deliverables. Taxonomy sectors count vocabulary fields, not episode frequencies.
+
 ## Example library
 
 The 100 conversations in `MarioEval_cases_en_(1)(1).zip` are illustrative examples.

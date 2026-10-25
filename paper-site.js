@@ -1,7 +1,7 @@
 'use strict';
 const $=s=>document.querySelector(s),safe=(s='')=>String(s).replace(/[&<>"']/g,c=>({'&':'&amp;','<':'&lt;','>':'&gt;','"':'&quot;',"'":'&#39;'}[c]));
-const REV='explorer-20261024',levelNames=['Goal preservation','Information uptake','State progression','Contextual expression','Proactive agency','Long-horizon coherence'];
-let publication,exhibits=[],route='home',metric='composite',agentMetric='composite',architecture='All',caseQuery='',casePurpose='all',view='chart',sortDown=true;
+const REV='research-20261025e',levelNames=['Goal preservation','Information uptake','State progression','Contextual expression','Proactive agency','Long-horizon coherence'];
+let publication,researchEvidence,exhibits=[],route='home',metric='composite',agentMetric='composite',architecture='All',caseQuery='',casePurpose='all',view='chart',sortDown=true;
 const assets=name=>'./assets/providers/'+(name.startsWith('claude')?'anthropic.svg':name.startsWith('gpt')?'openai.svg':name.startsWith('gemini')?'google.svg':name.startsWith('deepseek')?'deepseek.svg':name.startsWith('qwen')?'alibaba.svg':name.startsWith('kimi')?'kimi.jpg':'zai.svg');
 const color=name=>name.startsWith('claude')?'#af967c':name.startsWith('gpt')?'#3e6150':name.startsWith('deepseek')?'#668b9e':name.startsWith('gemini')?'#76a9d1':name.startsWith('kimi')?'#7fa590':'#a696ae';
 const number=(v,percent=false)=>percent?(v*100).toFixed(1)+'%':Number(v).toFixed(3);
@@ -76,4 +76,4 @@ document.addEventListener('click',e=>{const m=e.target.closest('[data-metric]');
 document.addEventListener('change',e=>{if(e.target.id==='paper-metric'){metric=e.target.value;render();}if(e.target.id==='agent-metric'){agentMetric=e.target.value;render();}if(e.target.id==='case-purpose'){casePurpose=e.target.value;$('#case-library').innerHTML=caseCards();}});
 document.addEventListener('input',e=>{if(e.target.id==='case-search'){caseQuery=e.target.value;$('#case-library').innerHTML=caseCards();}});
 window.addEventListener('hashchange',()=>{render();window.scrollTo({top:0,behavior:'instant'});});
-Promise.all(['paper-results.json','cases.json'].map(n=>fetch('./data/'+n+'?v='+REV).then(r=>{if(!r.ok)throw new Error('Could not load publication data');return r.json();}))).then(([p,c])=>{publication=p;exhibits=c;render();}).catch(e=>{$('#app').textContent=e.message;});
+Promise.all(['paper-results.json','cases.json','research-evidence.json'].map(n=>fetch('./data/'+n+'?v='+REV).then(r=>{if(!r.ok)throw new Error('Could not load publication data');return r.json();}))).then(([p,c,r])=>{publication=p;exhibits=c;researchEvidence=r;render();}).catch(e=>{$('#app').textContent=e.message;});
