@@ -163,7 +163,7 @@ for lang in ['en','zh']:
  for spine in ax.spines.values():spine.set_visible(False)
  for i,p in enumerate(latent['path']):
   path_ax.barh(0,1,left=i+.5,color='#d9c6a0' if p=='Maintain' else '#9cbb9d',edgecolor=PAPER,height=.7)
-  path_ax.text(i+1,0,('维持' if p=='Maintain' else '推进') if zh else ('M' if p=='Maintain' else 'A'),ha='center',va='center',fontsize=10,color='#35523a')
+  path_ax.text(i+1,0,('维持' if p=='Maintain' else '推进') if zh else p,ha='center',va='center',fontsize=9,color='#35523a')
  path_ax.set_yticks([0],['主导走向' if zh else 'Dominant path']);path_ax.tick_params(length=0,labelbottom=False)
  for spine in path_ax.spines.values():spine.set_visible(False)
  interest_ax.plot(latent['turns'],latent['interest'],color=GREEN,marker='o',lw=2)
