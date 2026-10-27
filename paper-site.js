@@ -60,7 +60,7 @@ function render(){
  if(params.has('architecture')&&['All','MetaMind','Cognizer','Claude Code'].includes(params.get('architecture')))architecture=params.get('architecture');
  if(params.has('purpose'))casePurpose=params.get('purpose');
  masthead();
- document.title=({home:'Results',research:'Research',cases:'Showcase',models:'Measures',agents:'Agents',leaderboards:'Leaderboards'}[route]|| (route.startsWith('model/')?decodeURIComponent(route.slice(6)):route))+' - InteractEval';
+ document.title=({home:'Main',research:'Research',cases:'Showcase',models:'Measures',agents:'Agents',leaderboards:'Leaderboards'}[route]|| (route.startsWith('model/')?decodeURIComponent(route.slice(6)):route))+' - InteractEval';
  let content;
  if(route.startsWith('model/'))content=modelProfile(decodeURIComponent(route.slice(6)));
  else if(route==='models'||route==='leaderboards'||route==='compare')content=modelExplorer();

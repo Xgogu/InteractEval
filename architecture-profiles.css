@@ -10,7 +10,7 @@
 .purpose-profile-intro{flex:1}
 .purpose-profile-intro>span,.purpose-profile-bars>span{display:block;font:8px/1.7 var(--mono);color:#899a7b;letter-spacing:.04em}
 .purpose-profile-intro>h4{min-height:54px;margin:14px 0 13px;font:400 27px/1.02 var(--serif);color:#4b7043;letter-spacing:-.02em}
-.purpose-profile-intro>p{min-height:97px;font:12px/1.8 var(--sans)!important;color:#75886a!important;margin:0 0 24px!important}
+.purpose-profile-intro>p{min-height:65px;font:12px/1.8 var(--sans)!important;color:#75886a!important;margin:0 0 24px!important}
 .purpose-profile-bars{padding:22px 0 20px;border-top:1px solid #dbe4d0;border-bottom:1px solid #dbe4d0}
 .purpose-profile-row{display:grid;grid-template-columns:1fr auto;gap:8px 10px;margin:18px 0 0;color:#7b8d70;font:11px/1.6 var(--sans)}
 .purpose-profile-row>strong{font:12px/1.6 var(--mono);font-weight:400;color:#7b946d}

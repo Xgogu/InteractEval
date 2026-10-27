@@ -40,6 +40,8 @@
 .intro-bridge{display:grid;grid-template-columns:200px 1fr auto;gap:35px;align-items:start;border-top:1px solid var(--line);padding:30px 0 0}
 .intro-bridge h3{font:400 29px/1.15 var(--serif);margin:0 0 12px;color:#36573d}.intro-bridge p{font:14px/1.8 var(--sans);color:#788470;margin:0;max-width:700px}
 .intro-bridge>a{align-self:center;white-space:nowrap;font:600 11px var(--sans);color:#345d40;text-decoration:none}.intro-bridge>a>span{margin-left:10px}
+.intro-results-link{display:flex;justify-content:space-between;align-items:center;border-top:1px solid var(--line);padding:20px 0;color:#345d40;text-decoration:none;font:500 12px/1.6 var(--sans)}
+.intro-results-link:hover{color:#a56447}
 @keyframes intro-appear{from{opacity:0;transform:translateY(5px)}to{opacity:1;transform:none}}
 @media(min-width:1600px){.proactivity-opening{max-width:1320px}}
 @media(max-width:1380px){.proactivity-opening{margin:0 48px}}
