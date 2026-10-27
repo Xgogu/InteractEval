@@ -6,15 +6,6 @@ Published results and illustrative conversations for the InteractEval study.
 - Research: https://xgogu.github.io/InteractEval/research.html
 - Showcase: https://xgogu.github.io/InteractEval/showcase.html
 
-## Opening interaction
-
-The Results and Research openings start at turn 4 of the two reimbursement
-episodes in Table 36: both have identical six-level scores of 0.6 at that turn.
-Readers can reveal the task state and interest trace, step through earlier turns,
-and follow the observed endings. `opening-case.js` condenses Boxes 25?26; displayed
-dialogue is explicitly paraphrased. Grades and interest readings remain unchanged.
-These are two observed conversations, not a controlled causal pair.
-
 ## Measurement sources
 
 All leaderboard and summary measurements are transcribed from the supplied paper,
