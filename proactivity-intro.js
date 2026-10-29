@@ -5,12 +5,6 @@
 // https://www.cs.ox.ac.uk/people/michael.wooldridge/pubs/ker95.pdf
 // Evaluation context: ProactiveEval (2025), https://arxiv.org/abs/2508.20973.
 // These authored vignettes illustrate uncertainty; they are not scored episodes.
-const introductoryTraits = [
-  ['Reactivity', 'Respond to changes in the environment.'],
-  ['Social ability', 'Interact with people and other agents.'],
-  ['Autonomy', 'Control actions without direct intervention.'],
-  ['Proactiveness', 'Take initiative toward a goal.']
-];
 const introductoryDialogues = [
   {
     name: 'Making a plan', context: 'Two friends are arranging a trip.',
@@ -50,11 +44,21 @@ let introductoryDialogue = 0;
 let introductoryRevealed = false;
 
 function proactivityHero() {
+  const stages = [
+    ['Follow the brief', 'L1\u2013L2'],
+    ['Adapt as things change', 'L3\u2013L4'],
+    ['Take the lead & follow through', 'L5\u2013L6']
+  ];
+  const ranges = stages.map((_, i) => {
+    const scores = publication.models.map(model => model.stages[i]);
+    return { low: Math.min(...scores), high: Math.max(...scores) };
+  });
   return editorialHero({
     kicker: 'Main',
-    title: 'What remains<br/><em>unsaid.</em>',
-    deck: 'People rarely spell out every goal, constraint, or concern. A useful partner must decide what to ask, when to offer a next step, and when to wait.',
-    aside: `<aside class="agency-origin" aria-label="Four properties of agency"><div class="agency-origin-heading"><span>Four properties of agency</span><span>1995</span></div>${introductoryTraits.map(([name,meaning],i)=>`<div class="agency-origin-trait ${i===3?'agency-origin-active':''}"><span>0${i+1}</span><div><h2>${name}</h2><p>${meaning}</p></div>${i===3?'<b aria-hidden="true">↗</b>':''}</div>`).join('')}<p class="agency-origin-credit">Wooldridge &amp; Jennings<br/><cite>Intelligent Agents: Theory and Practice</cite></p><a href="#beneath-the-words" data-research-section="beneath-the-words">Conversation examples <span>↓</span></a></aside>`
+    body: `<p class="hero-method-summary">The framework follows participant states and event trajectories across turns, then evaluates six levels of interaction capability.</p><div class="hero-entry-links"><a href="#model-readout">Explore the results <span aria-hidden="true">&#8595;</span></a><a href="./research.html">How evaluation works <span aria-hidden="true">&#8599;</span></a></div>`,
+    title: 'Can a model<br/><em>take the next step?</em>',
+    deck: 'InteractEval is a benchmark and evaluation framework for multi-turn interaction. It measures how models understand changing situations, take useful initiative, and follow through.',
+    aside: `<figure class="hero-finding" aria-labelledby="hero-finding-title"><figcaption><h2 id="hero-finding-title">The gap grows with initiative.</h2><p>Models cluster when following a brief. Their scores spread out when they must take the lead.</p></figcaption><div class="hero-finding-axis"><span>Score (0 to 1)</span><span>Gap between models</span></div>${stages.map(([label,levels],i)=>{const r=ranges[i];return `<div class="hero-finding-row ${i===2?'is-active-stage':''}"><div class="hero-finding-label"><h3>${label}</h3><span>${levels}</span></div><div class="hero-finding-measure"><div class="hero-finding-track" role="img" aria-label="${label}: model scores range from ${r.low.toFixed(3)} to ${r.high.toFixed(3)}"><i style="left:${r.low*100}%;width:${(r.high-r.low)*100}%"></i><b style="left:${r.low*100}%"></b><b style="left:${r.high*100}%"></b></div><strong>${(r.high-r.low).toFixed(3)}</strong></div></div>`;}).join('')}<div class="hero-finding-scale" aria-hidden="true"><span>0</span><span>0.5</span><span>1</span></div><p class="hero-finding-note">Each band spans the lowest to highest score across ten base models. All three use the same scale.</p><a href="#capability">Explore the six capability levels <span aria-hidden="true">&#8595;</span></a></figure>`
   });
 }
 
