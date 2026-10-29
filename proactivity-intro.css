@@ -140,36 +140,38 @@
  .intro-story-progress>button>i{transition:none}
 }
 
-/* A larger reading surface, with the conversation carrying the visual weight. */
-.intro-dialogue-panel{grid-template-columns:minmax(0,1.9fr) minmax(280px,.85fr);column-gap:40px;row-gap:24px}
-.intro-motion-scene{min-height:470px;padding:32px 36px 24px}
+/* Compact exchanges: size the frame to its dialogue rather than empty space. */
+.intro-dialogue-panel{grid-template-columns:minmax(0,1.4fr) minmax(280px,.9fr);column-gap:40px;row-gap:24px}
+.intro-motion-scene{min-height:0;padding:23px 26px 20px}
 .intro-motion-scene:focus-visible{outline:2px solid #8c6749;outline-offset:4px}
-.intro-active-exchange{min-height:300px}
-.intro-motion-scene .intro-record-heading{font-size:14px}
-.intro-motion-scene .intro-record-heading>span:last-child{font-size:13px}
-.intro-motion-scene .intro-turns{gap:32px;margin:30px 0}
+.intro-active-exchange{min-height:0;padding-top:0}
+.intro-motion-scene .intro-record-heading{font-size:13px}
+.intro-motion-scene .intro-record-heading>span:last-child{font-size:12px}
+.intro-motion-scene .intro-turns{gap:21px;margin:22px 0}
 .intro-motion-scene .intro-turns li{max-width:100%}
-.intro-motion-scene .intro-turns li.is-current blockquote{font-size:clamp(28px,2.4vw,34px);line-height:1.35;letter-spacing:-.015em}
-.intro-motion-scene .intro-turns .intro-reply{margin-left:40px}
-.intro-motion-scene .intro-turn-speaker{font-size:14px;gap:10px}
-.intro-motion-scene .intro-conversation-history{margin-top:auto;padding-top:18px}
-.intro-dialogue-reading h3{font-size:clamp(27px,2.4vw,33px);line-height:1.15}
+.intro-motion-scene .intro-turns li.is-current blockquote{font-size:clamp(26px,2.1vw,30px);line-height:1.35;letter-spacing:-.015em}
+.intro-motion-scene .intro-turns .intro-reply{margin-left:28px}
+.intro-motion-scene .intro-turn-speaker{font-size:13px;gap:9px}
+.intro-motion-scene .intro-conversation-history{margin-top:0;padding-top:8px}
+.intro-motion-scene .intro-reply-cue{min-height:32px;margin:8px 0 14px 28px}
+.intro-dialogue-reading{padding-top:8px}
+.intro-dialogue-reading h3{font-size:clamp(27px,2.4vw,32px);line-height:1.15;margin:14px 0}
 .intro-dialogue-reading p{font-size:15px;line-height:1.75}
-.intro-story-lesson{padding:20px;margin-top:22px}
+.intro-story-lesson{padding:18px;margin-top:19px}
 .intro-story-lesson p{font-size:14px}
 .intro-turn-enter{animation-duration:.36s;animation-delay:calc(var(--turn-order,0)*.07s)}
 .intro-reading-enter{animation-duration:.3s}
 @media(max-width:1000px){
- .intro-dialogue-panel{grid-template-columns:minmax(0,1.65fr) minmax(245px,.85fr);column-gap:28px}
- .intro-motion-scene{padding:28px}
+ .intro-dialogue-panel{grid-template-columns:minmax(0,1.35fr) minmax(245px,.85fr);column-gap:28px}
+ .intro-motion-scene{padding:22px}
 }
 @media(max-width:760px){
  .intro-dialogue-panel{grid-template-columns:minmax(0,1fr);row-gap:19px}
- .intro-motion-scene{min-height:440px;padding:25px 22px}
- .intro-active-exchange{min-height:300px}
- .intro-motion-scene .intro-turns li.is-current blockquote{font-size:28px;line-height:1.4}
- .intro-motion-scene .intro-turns .intro-reply{margin-left:18px}
- .intro-motion-scene .intro-record-heading{font-size:13px}
+ .intro-motion-scene{min-height:0;padding:21px 19px 17px}
+ .intro-active-exchange{min-height:0}
+ .intro-motion-scene .intro-turns li.is-current blockquote{font-size:26px;line-height:1.4}
+ .intro-motion-scene .intro-turns .intro-reply,.intro-motion-scene .intro-reply-cue{margin-left:16px}
+ .intro-motion-scene .intro-record-heading{font-size:12px}
  .intro-motion-scene .intro-turn-speaker{font-size:13px}
- .intro-dialogue-reading h3{font-size:30px}
+ .intro-dialogue-reading h3{font-size:29px}
 }
