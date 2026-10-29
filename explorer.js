@@ -70,6 +70,7 @@ function researchArticle(){return researchIntroduction();}
 function afterExplorerRender(){
   syncEditorialHeader();
   $('#app').classList.toggle('journal-app',route==='research'||route==='home');
+  setupIntroductoryPlayer();
   if(researchObserver)researchObserver.disconnect();
   if(route==='research'||route==='home'){
     researchObserver=new IntersectionObserver(entries=>{for(const entry of entries)if(entry.isIntersecting)document.querySelectorAll('.article-rail [data-research-section]').forEach(a=>a.classList.toggle('active',a.dataset.researchSection===entry.target.id));},{rootMargin:'-90px 0px -55% 0px'});

@@ -95,3 +95,60 @@
  .intro-turns .intro-reply{margin-left:18px}
  .intro-story-lesson{margin-top:22px;padding:20px}
 }
+
+/* A paced conversation player. Motion carries the turn order, never the text. */
+.intro-dialogue-panel{row-gap:24px}
+.intro-player-toolbar{grid-column:1/-1;display:flex;justify-content:space-between;align-items:center;gap:18px;padding:0 0 2px;color:#53634f;font:400 13px/1.6 var(--sans)}
+.intro-player-toolbar>div{display:flex;align-items:center;gap:12px}
+.intro-player-toolbar button{display:inline-flex;align-items:center;justify-content:center;gap:9px;min-height:42px;padding:9px 15px;border:1px solid #cad7c2;border-radius:6px;background:transparent;color:#34543a;font:500 13px/1.5 var(--sans)}
+.intro-player-toolbar button[data-intro-play]{background:#284c36;border-color:#284c36;color:#f4f5e9;min-width:96px}
+.intro-player-toolbar button:hover{box-shadow:0 0 0 2px #9bb48a24}
+.intro-player-toolbar button:focus-visible{outline:2px solid #9d6448;outline-offset:3px}
+.intro-player-toolbar button>span{font-size:12px;line-height:1}
+.intro-playback-dot{width:7px;height:7px;border-radius:50%;background:#718568}
+.intro-playback-dot.is-playing{background:#446c47;animation:intro-player-pulse 1.7s ease-in-out infinite}
+.intro-story-progress{margin-bottom:2px;gap:10px}
+.intro-story-progress>button{position:relative;overflow:hidden;padding-bottom:15px}
+.intro-story-progress>button>i{position:absolute;bottom:0;left:0;right:0;height:2px;background:#6c8b61;transform-origin:left center;transition:transform .5s ease}
+.intro-motion-scene{display:flex;flex-direction:column;min-width:0;padding:26px 28px 22px}
+.intro-motion-scene .intro-record-heading{align-items:flex-start;gap:15px}
+.intro-motion-scene .intro-record-heading>span:last-child{white-space:nowrap;letter-spacing:0}
+.intro-active-exchange{min-height:330px;padding-top:8px}
+.intro-motion-scene .intro-turns{margin:26px 0;gap:28px}
+.intro-motion-scene .intro-turns li{max-width:94%}
+.intro-motion-scene .intro-turns .intro-reply{margin-left:32px}
+.intro-turn-enter{animation:intro-turn-arrive .55s cubic-bezier(.2,.65,.3,1) both;animation-delay:calc(var(--turn-order,0)*.11s)}
+.intro-reply-cue{display:flex;align-items:center;gap:6px;min-height:48px;margin:10px 0 18px 32px;color:#53634f;font:12px/1.6 var(--sans)}
+.intro-reply-cue>span{margin-right:8px}
+.intro-reply-cue>i{width:5px;height:5px;border-radius:50%;background:#7d9470;animation:intro-reply-pulse 1.25s ease-in-out infinite}
+.intro-reply-cue>i:nth-of-type(2){animation-delay:.15s}.intro-reply-cue>i:nth-of-type(3){animation-delay:.3s}
+.intro-scene-time{font:12px/1.6 var(--sans);color:#53634f;margin:21px 0 -10px}
+.intro-scene-footer{margin-top:auto}
+.intro-motion-scene .intro-follow-button{padding:18px 0 4px;min-height:48px}
+.intro-reading-content>span{font:400 13px/1.6 var(--sans);color:#53634f}
+.intro-reading-enter{animation:intro-reading-arrive .45s ease both}
+.intro-conversation-history{margin-top:15px;font:13px/1.7 var(--sans);color:#53634f}
+.intro-conversation-history summary{cursor:pointer;width:fit-content;padding:6px 0;text-underline-offset:4px}
+.intro-conversation-history summary:hover{text-decoration:underline}
+.intro-conversation-history>div{padding:17px 0 4px}
+.intro-conversation-history>div>span{display:block;font-weight:500;color:#34543a;margin-bottom:9px}
+.intro-conversation-history p{font-size:13px;line-height:1.75;margin:0 0 9px}
+.intro-conversation-history p>b{font-weight:500;margin-right:7px}
+@keyframes intro-turn-arrive{from{opacity:0;transform:translateY(13px)}to{opacity:1;transform:translateY(0)}}
+@keyframes intro-reading-arrive{from{opacity:0;transform:translateY(7px)}to{opacity:1;transform:translateY(0)}}
+@keyframes intro-reply-pulse{0%,70%,100%{opacity:.35;transform:translateY(0)}35%{opacity:1;transform:translateY(-3px)}}
+@keyframes intro-player-pulse{0%,100%{box-shadow:0 0 0 0 #446c471c}50%{box-shadow:0 0 0 5px #446c4700}}
+@media(max-width:760px){
+ .intro-dialogue-panel{row-gap:19px}
+ .intro-player-toolbar{gap:10px;flex-wrap:wrap}
+ .intro-player-toolbar>div{gap:8px}
+ .intro-player-toolbar button{padding:9px 12px}
+ .intro-story-progress{margin-bottom:0;gap:4px}
+ .intro-motion-scene{padding:23px 19px 20px}
+ .intro-active-exchange{min-height:310px}
+ .intro-motion-scene .intro-turns .intro-reply,.intro-reply-cue{margin-left:17px}
+}
+@media(prefers-reduced-motion:reduce){
+ .intro-turn-enter,.intro-reading-enter,.intro-reply-cue>i,.intro-playback-dot.is-playing{animation:none}
+ .intro-story-progress>button>i{transition:none}
+}
