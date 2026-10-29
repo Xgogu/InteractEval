@@ -68,7 +68,7 @@ function render(){
  else if(route==='cases')content=cases();
  else if(route==='research')content=research();
  else if(route==='trends')content=trends();
- else if(route==='multimodal')content='<section class="paper-card pending-publication"><span class="eyebrow">PENDING</span><h1>Image, speech, and video</h1><p>Multimodal results will appear when published measurements are available.</p></section>';
+ else if(route==='multimodal')content='<section class="paper-card pending-publication"><span class="eyebrow">Pending</span><h1>Image, speech, and video</h1><p>Multimodal results will appear when published measurements are available.</p></section>';
  else content=home();
  $('#app').innerHTML=content;afterExplorerRender();
 }

@@ -4,13 +4,13 @@ let researchRecordView='latent',researchRecordTurn=5;
 
 function temporalTheoryDrawing(){
   return `<svg class="temporal-theory" viewBox="0 0 490 335" role="img" aria-label="Events ordered by time: established past, current state, and conditional future paths">
-  <text x="30" y="35" class="time-zone">ESTABLISHED PAST</text><text x="239" y="35" class="time-zone">PRESENT</text><text x="353" y="35" class="time-zone">POSSIBLE FUTURES</text>
+  <text x="30" y="35" class="time-zone">Established past</text><text x="239" y="35" class="time-zone">Present</text><text x="353" y="35" class="time-zone">Possible futures</text>
   <path d="M35 171H271" class="time-history"/><path d="M271 171H455" class="time-future"/><path d="m447 166 9 5-9 5" class="time-future"/>
   <path d="M271 171 369 100h70M271 171l98 72h70" class="time-future"/>
   ${[[55,'t−2','Request'],[148,'t−1','Clarification'],[263,'t','Commitment']].map(([x,t,label])=>`<circle cx="${x}" cy="171" r="${t==='t'?9:6}" class="time-observed"/><text x="${x}" y="205" text-anchor="middle">${t}</text><text x="${x}" y="229" text-anchor="middle">${label}</text>`).join('')}
   <circle cx="371" cy="100" r="6" class="time-projected"/><circle cx="371" cy="243" r="6" class="time-projected"/>
   <text x="366" y="79">Progress?</text><text x="366" y="270">Stagnation?</text>
-  <path d="M263 57v230" class="time-now"/><text x="30" y="307">TURN / TIME →</text><text x="275" y="307" class="time-qualification">Projections are not realized events.</text></svg>`;
+  <path d="M263 57v230" class="time-now"/><text x="30" y="307">Turn / time →</text><text x="275" y="307" class="time-qualification">Projections are not realized events.</text></svg>`;
 }
 function recordDownloads(name){return `<div class="record-downloads"><span>Download figure</span><a href="./assets/research/${name}-en.svg" download>SVG ↓</a><a href="./assets/research/${name}-en.png" download>PNG ↓</a></div>`;}
 function recordTurnControls(max){return `<div class="record-turn-controls"><span>Exchange</span><div role="group" aria-label="Recorded exchange">${Array.from({length:max},(_,i)=>`<button data-record-turn="${i+1}" aria-pressed="${researchRecordTurn===i+1}">t${i+1}</button>`).join('')}</div></div>`;}

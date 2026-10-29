@@ -1,4 +1,11 @@
 /* Shared chapter headings use title and whitespace rather than a second label. */
+.research-restored :is(.intro-eyebrow,.agency-origin-heading,.intro-record-heading>span:last-child,.intro-dialogue-reading>span,.intro-next-step>span,.intro-mark,.hero-foot,.hero-card-head,.finding-callout>span,.focus-select>span,.result-focus-panel>div>small,.stage-spread-cards small,.duration-reading>small:first-child,.duration-reading>label,.journal-follow-select,.partner-result-summary>div>small,.research-eyebrow,.instrument-reading>small,.instrument-reading section>span,.component-reading>span,.cascade-explainer>small){font:400 12px/1.6 var(--sans);letter-spacing:0;text-transform:none}
+.research-restored .intro-mark i{display:none}
+.research-restored .journal-kicker{font:400 13px/1.5 var(--sans);letter-spacing:0;text-transform:none}
+.research-feature :is(.research-eyebrow,.instrument-io small,.rubric-reading>small,.record-downloads>span,.record-turn-controls>span,.research-figure-package>span){font-size:13px;letter-spacing:0;text-transform:none}
+.case-library-intro>span{font:400 13px/1.6 var(--sans);letter-spacing:0;text-transform:none}
+.pending-publication .eyebrow,.explorer-sidebar>small{font:400 12px/1.6 var(--sans);letter-spacing:0;text-transform:none}
+.temporal-theory .time-zone{font:11px var(--sans);letter-spacing:0}
 .research-restored .journal-section-heading{display:block;margin-bottom:30px;padding:0;border:0}
 .research-restored .journal-section-heading h2{max-width:760px;margin:0 0 15px;font:400 clamp(34px,3.4vw,46px)/1.12 var(--serif);letter-spacing:-.035em;color:#294837;text-wrap:balance}
 .research-restored .journal-section-heading p{max-width:640px;font:14px/1.8 var(--sans);letter-spacing:0;color:#71806c;text-wrap:pretty}
