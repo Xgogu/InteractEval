@@ -1,6 +1,8 @@
 /* Site typography: two self-hosted families, with tabular figures for data. */
 :root{--serif:'Newsreader',Georgia,serif;--sans:'DM Sans',system-ui,sans-serif;--mono:var(--sans);--muted:#53634f}
 body{font:400 15px/1.65 var(--sans);font-optical-sizing:auto}
+.paper-app.journal-app{width:100%;max-width:none;margin:0 auto 50px}
+.paper-app:has(>.research-restored){width:100%;max-width:none;margin:0 auto 50px}
 .research-restored{--serif:'Newsreader',Georgia,serif;--sans:'DM Sans',system-ui,sans-serif;--mono:var(--sans);--muted:#53634f;--faint:#5d6c58;font-size:15px}
 .masthead{--nav-muted:#53634f}
 .research-restored .article-rail>a{font-size:13px;line-height:1.6;padding-top:10px;padding-bottom:10px}

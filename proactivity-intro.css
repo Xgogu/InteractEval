@@ -1,5 +1,6 @@
 /* Main: project definition and a finding on the same visual plane. */
-.results-page .journal-hero{grid-template-columns:minmax(0,1.15fr) minmax(340px,.95fr);gap:clamp(35px,5vw,76px);min-height:620px;padding-top:74px;padding-bottom:76px}
+.results-page .journal-hero{grid-template-columns:minmax(0,1.15fr) minmax(340px,.95fr);gap:clamp(35px,5vw,76px);min-height:620px;padding:74px max(28px,calc((100% - 1240px)/2)) 76px}
+.results-page .hero-copy{min-width:0}
 .results-page .journal-hero h1{font-size:clamp(62px,6.3vw,88px);line-height:1.04;letter-spacing:-.035em;margin:25px 0 27px;max-width:680px}
 .results-page .journal-deck{font:400 18px/1.7 var(--sans);color:#e0e7db;max-width:610px}
 .results-page .hero-method-summary{font:400 15px/1.75 var(--sans);color:#bccdbd;margin:17px 0 0;max-width:580px}
@@ -22,6 +23,7 @@
 .hero-finding .hero-finding-note{font:12px/1.75 var(--sans);color:#c0cfbc;margin:22px 0 18px}
 .hero-finding>a{display:flex;justify-content:space-between;gap:15px;font:500 13px/1.6 var(--sans);color:#e2ead7;padding-top:16px;border-top:1px solid #a7bca92b}
 .hero-finding>a:hover{color:#f3cfad}
+@media(max-width:980px){.results-page .journal-hero{grid-template-columns:minmax(0,1fr);min-height:0;gap:38px;padding:58px 28px 60px}.results-page .hero-finding{width:100%;max-width:650px}.results-page .journal-hero h1{max-width:720px}.results-page .journal-deck{max-width:650px}}
 .proactivity-opening{max-width:1240px;margin:0 auto;padding:62px 0 0;scroll-margin-top:110px}
 .intro-eyebrow{color:#53634f;font:12px/1.7 var(--mono);letter-spacing:.13em}
 .intro-history{display:grid;grid-template-columns:200px 1fr;gap:35px;padding:0 0 55px;border-bottom:1px solid var(--line)}
