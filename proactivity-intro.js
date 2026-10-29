@@ -7,41 +7,38 @@
 // These authored vignettes illustrate uncertainty; they are not scored episodes.
 const introductoryDialogues = [
   {
-    name: 'Making a plan', context: 'Two friends are arranging a trip.',
-    opening: ['Let’s take the 7 a.m. train.', 'That could work.'],
-    question: 'How would you get to the station?',
-    answer: 'It’s an hour away. The buses don’t start that early.',
-    unknown: 'Getting to the station',
-    surface: 'We do not yet know whether the station is reachable in time.',
-    change: 'A transport constraint',
-    reading: 'The proposed departure conflicts with the available transport.',
-    next: 'Check a later train or an earlier pickup together.'
+    name: 'Before a release', context: 'A team is preparing a software release.',
+    lesson: 'The value of the intervention depends on when it happens and whether the compatibility issue is followed through to a check.',
+    stages: [
+      {title: 'The tests passed.', copy: 'The team has evidence about the tested setup. Coverage of existing installations is still unknown.', next: 'Check what the tests covered', turns: [['Engineer', 'The patch passes all the tests.'], ['Reviewer', "Great. Let's get the release ready."]]},
+      {title: 'Existing installations remain unchecked.', copy: 'A targeted question exposes a gap in the evidence. The release decision now depends on the older configuration.', next: 'Act on the new information', turns: [['Reviewer', 'Did we test an upgraded project as well as a new one?'], ['Engineer', 'Only a new one. Older projects use a different configuration.']]},
+      {title: 'The release plan changes.', copy: 'The check happens before publication and finds a failure. A proposed fix creates a new obligation: confirm that it works.', next: 'Follow the change through', turns: [['Reviewer', "Let's try an upgraded project before we publish."], ['Engineer', "It fails. I'll add a migration for the old configuration."]]},
+      {title: 'The new condition is checked.', copy: 'The final exchange supplies evidence that the compatibility issue was addressed. The useful contribution spans several turns: notice, check, act, and verify.', turns: [['Reviewer', 'Does the upgraded project pass with the migration?'], ['Engineer', 'Yes. Both the old and new configurations pass now.']]}
+    ]
   },
   {
-    name: 'Learning something new', context: 'A student has just heard an explanation.',
-    opening: ['Does that explanation make sense?', 'Yes, I think so.'],
-    question: 'How would you use it on this example?',
-    answer: 'I know the formula. I don’t know when to choose it.',
-    unknown: 'Applying the formula',
-    surface: 'The reply does not establish whether the student can use the explanation.',
-    change: 'Choosing a method',
-    reading: 'The remaining difficulty is deciding when the formula applies.',
-    next: 'Work through how to choose the formula on a fresh example.'
+    name: 'Helping a learner', context: 'A learner has just heard an explanation of fractions.',
+    lesson: 'Understanding is an estimate revised from the answers. Correcting an answer with a hint and applying the idea independently provide different evidence.',
+    stages: [
+      {title: 'Agreement leaves something untested.', copy: 'The learner says the explanation makes sense. Their ability to use it has not yet been demonstrated.', next: 'Try a concrete comparison', turns: [['Tutor', 'Does that explanation make sense?'], ['Learner', 'Yes, I think so.']]},
+      {title: 'A specific misconception appears.', copy: 'The answer suggests that the learner is comparing the denominators as whole numbers. Repeating the same explanation may leave that difficulty unresolved.', next: 'Change the explanation', turns: [['Tutor', 'Which is larger: one third or one quarter?'], ['Learner', 'One quarter. Four is bigger than three.']]},
+      {title: 'The learner revises the answer.', copy: 'A different representation helps with the original comparison. A fresh example can show whether the reasoning transfers.', next: 'Check a fresh example', turns: [['Tutor', 'Imagine the same cake cut into three equal pieces, then four. Which pieces are larger?'], ['Learner', 'The thirds. So one third is larger.']]},
+      {title: 'The reasoning carries to a new example.', copy: 'The learner explains a new comparison without the cake prompt. This supports understanding of this idea; it does not establish broader mastery of fractions.', turns: [['Tutor', 'And one fifth or one sixth? How would you decide?'], ['Learner', 'One fifth. Fewer pieces means each piece is larger.']]}
+    ]
   },
   {
-    name: 'Taking on more work', context: 'A colleague is being asked for help.',
-    opening: ['Could you take one more thing today?', 'I can try.'],
-    question: 'What is already due today?',
-    answer: 'The draft and two revisions. I’d have to push one back.',
-    unknown: 'Available time',
-    surface: 'The colleague is willing to help, but their existing commitments are unknown.',
-    change: 'A scheduling conflict',
-    reading: 'Accepting another task would delay an existing commitment.',
-    next: 'Agree which task can move before adding another.'
+    name: 'Finding the right support', context: 'Two friends meet after a difficult meeting.',
+    lesson: 'The purpose of an interaction and the participant’s willingness can change. Useful initiative includes offering a choice, respecting the answer, and allowing the pace to change.',
+    stages: [
+      {title: 'The kind of support is still open.', copy: 'Advice may be welcome, but the person has not yet said what they need from this conversation.', next: 'Hear the response', turns: [['Person', 'That meeting went badly.'], ['Friend', 'Want to work out what to say next time?']]},
+      {title: 'A boundary becomes explicit.', copy: 'The person declines a detailed discussion tonight. The next offer gives them a choice about how to continue.', next: 'Follow their preference', turns: [['Person', "I can't go through it all again tonight."], ['Friend', 'Would you prefer some company, without talking through it?']]},
+      {title: 'The immediate goal becomes companionship.', copy: 'Both people agree to a walk. Pushing for a solution at this point would disregard the preference just expressed.', next: 'Continue to the end of the walk', turns: [['Person', "Yes. Let's just take a walk."], ['Friend', 'Okay. We can leave the meeting alone.']]},
+      {title: 'Readiness changes later.', copy: 'At the end of the walk, the person asks for help tomorrow. The friend leaves the timing with them rather than treating the earlier boundary as permanent.', time: 'At the end of the walk', turns: [['Person', 'Could we look at what happened tomorrow?'], ['Friend', "Of course. Let me know when you're ready."]]}
+    ]
   }
 ];
 let introductoryDialogue = 0;
-let introductoryRevealed = false;
+let introductoryStep = 0;
 
 function proactivityHero() {
   const stages = [
@@ -64,26 +61,41 @@ function proactivityHero() {
 
 function introductoryDialoguePanel() {
   const c=introductoryDialogues[introductoryDialogue];
-  return `<div class="intro-dialogue-record"><div class="intro-record-heading"><span>${c.context}</span><span>Illustrative dialogue</span></div><ol class="intro-turns"><li><span>01</span><blockquote>${c.opening[0]}</blockquote></li><li class="intro-reply"><span>02</span><blockquote>${c.opening[1]}</blockquote></li>${introductoryRevealed?`<li class="intro-follow-up"><span>03</span><blockquote>${c.question}</blockquote></li><li class="intro-reply intro-follow-up"><span>04</span><blockquote>${c.answer}</blockquote></li>`:''}</ol><button class="intro-follow-button" data-intro-reveal aria-expanded="${introductoryRevealed}">${introductoryRevealed?'Return to the first exchange':'Ask one more question'}<span aria-hidden="true">${introductoryRevealed?'↶':'↗'}</span></button></div><aside class="intro-dialogue-reading" aria-live="polite"><span>${introductoryRevealed?'After the follow-up':'What we know so far'}</span><h3>${introductoryRevealed?c.change:c.unknown}</h3><p>${introductoryRevealed?c.reading:c.surface}</p>${introductoryRevealed?`<div class="intro-next-step"><span>A useful next step</span><p>${c.next}</p></div>`:''}</aside>`;
+  const stage=c.stages[introductoryStep],labels=['First exchange','New evidence','Action','Follow-through'];
+  const turns=c.stages.slice(0,introductoryStep+1).map((s,i)=>`${s.time?`<li class="intro-time-note">${s.time}</li>`:''}${s.turns.map(([speaker,text],j)=>`<li class="${i===introductoryStep?'is-current':'is-earlier'} ${j===1?'intro-reply':''}"><div class="intro-turn-speaker"><span>${String(i*2+j+1).padStart(2,'0')}</span>${speaker}</div><blockquote>${safe(text)}</blockquote></li>`).join('')}`).join('');
+  return `<nav class="intro-story-progress" aria-label="Conversation stages">${labels.map((label,i)=>`<button data-intro-step="${i}" aria-pressed="${i===introductoryStep}" ${i===introductoryStep?'aria-current="step"':''}><span aria-hidden="true">${i<introductoryStep?'✓':String(i+1)}</span>${label}</button>`).join('')}</nav><div class="intro-dialogue-record"><div class="intro-record-heading"><span>${c.context}</span><span>${(introductoryStep+1)*2} turns</span></div><ol class="intro-turns">${turns}</ol><button class="intro-follow-button" data-intro-next>${stage.next||'Read from the beginning'}<span aria-hidden="true">${stage.next?'↓':'↶'}</span></button></div><aside class="intro-dialogue-reading" aria-live="polite" aria-atomic="true"><span>${labels[introductoryStep]}</span><h3>${stage.title}</h3><p>${stage.copy}</p>${introductoryStep===c.stages.length-1?`<div class="intro-story-lesson"><h4>What this illustrates</h4><p>${c.lesson}</p><a href="./research.html#theory">State, trajectory, and initiative ↗</a></div>`:''}</aside>`;
 }
 
 function proactivityOpening() {
-  return `<section id="beneath-the-words" class="proactivity-opening" aria-labelledby="proactivity-heading"><div class="intro-history"><span class="intro-eyebrow">Proactiveness</span><div><p>In their 1995 account of agency, Michael Wooldridge and Nicholas R. Jennings included taking initiative toward a goal. In conversation, that may begin with checking an assumption the other person has left unstated.</p></div></div><div class="intro-section-heading"><div><span class="intro-eyebrow">Examples</span><h2 id="proactivity-heading">Short<br/><em>conversations.</em></h2></div><p>Open a follow-up to see what the initial reply left unclear.</p></div><div class="intro-case-selector" role="group" aria-label="Choose an everyday dialogue">${introductoryDialogues.map((c,i)=>`<button data-intro-case="${i}" aria-pressed="${i===introductoryDialogue}"><span>0${i+1}</span>${c.name}<b aria-hidden="true">&#8599;</b></button>`).join('')}</div><div id="intro-dialogue-panel" class="intro-dialogue-panel">${introductoryDialoguePanel()}</div></section>`;
+  return `<section id="beneath-the-words" class="proactivity-opening" aria-labelledby="proactivity-heading"><div class="intro-history"><span class="intro-eyebrow">Proactiveness</span><div><p>In their 1995 account of agency, Michael Wooldridge and Nicholas R. Jennings included taking initiative toward a goal. In conversation, that may begin with checking an assumption the other person has left unstated.</p></div></div><div class="intro-section-heading"><div><span class="intro-eyebrow">Examples</span><h2 id="proactivity-heading">What happens<br/><em>after the reply?</em></h2></div><p>Three authored examples. Follow each exchange to see how new evidence changes the next step.</p></div><div class="intro-case-selector" role="group" aria-label="Choose a conversation">${introductoryDialogues.map((c,i)=>`<button data-intro-case="${i}" aria-pressed="${i===introductoryDialogue}"><span>0${i+1}</span>${c.name}<b aria-hidden="true">&#8599;</b></button>`).join('')}</div><div id="intro-dialogue-panel" class="intro-dialogue-panel">${introductoryDialoguePanel()}</div></section>`;
+}
+
+function updateIntroductoryPanel(focusNext=false){
+  const panel=document.getElementById('intro-dialogue-panel');
+  if(!panel)return;
+  panel.innerHTML=introductoryDialoguePanel();
+  if(focusNext){
+    panel.querySelector('[data-intro-next]')?.focus({preventScroll:true});
+    panel.querySelector('.intro-turns .is-current')?.scrollIntoView({block:'nearest',behavior:matchMedia('(prefers-reduced-motion: reduce)').matches?'instant':'smooth'});
+  }
 }
 
 document.addEventListener('click',event=>{
   const choose=event.target.closest('[data-intro-case]');
   if(choose){
     introductoryDialogue=Number(choose.dataset.introCase);
-    introductoryRevealed=false;
+    introductoryStep=0;
     document.querySelectorAll('[data-intro-case]').forEach(b=>b.setAttribute('aria-pressed',String(Number(b.dataset.introCase)===introductoryDialogue)));
-    const panel=document.getElementById('intro-dialogue-panel');
-    if(panel)panel.innerHTML=introductoryDialoguePanel();
+    updateIntroductoryPanel();
   }
-  const reveal=event.target.closest('[data-intro-reveal]');
-  if(reveal){
-    introductoryRevealed=!introductoryRevealed;
-    const panel=document.getElementById('intro-dialogue-panel');
-    if(panel){panel.innerHTML=introductoryDialoguePanel();panel.querySelector('[data-intro-reveal]')?.focus({preventScroll:true});}
+  const step=event.target.closest('[data-intro-step]');
+  if(step){
+    introductoryStep=Number(step.dataset.introStep);
+    updateIntroductoryPanel();
+    document.querySelector(`[data-intro-step="${introductoryStep}"]`)?.focus({preventScroll:true});
+  }
+  if(event.target.closest('[data-intro-next]')){
+    introductoryStep=(introductoryStep+1)%introductoryDialogues[introductoryDialogue].stages.length;
+    updateIntroductoryPanel(true);
   }
 });
