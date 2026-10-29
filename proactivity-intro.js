@@ -60,22 +60,36 @@ function proactivityHero() {
 }
 
 const introductoryStageLabels=['First exchange','New evidence','Action','Follow-through'];
+const introductorySummaries=[
+  ['The tests cover one setup. Compatibility with existing projects is still unknown.','A follow-up reveals that older configurations were never checked.','Checking before publication finds a failure and changes the release plan.','The team checks both configurations, closing the issue raised earlier.'],
+  ['Agreement gives little evidence that the learner can use the idea.','The comparison reveals a specific misconception about denominators.','A different explanation helps the learner correct the original answer.','A fresh comparison shows the learner applying the reasoning independently.'],
+  ['The person has not yet said which kind of support would help.','An explicit boundary makes room for a different kind of support.','The agreed goal is companionship. Advice can wait.','Readiness changes, and the person chooses when to continue.']
+];
+const introductoryTakeaways=[
+  'Useful initiative connects evidence, timing, action, and a later check.',
+  'Understanding is an estimate revised as the learner responds.',
+  'Useful initiative follows changing goals and respects the participant’s pace.'
+];
 let introductoryVisibleTurns=2;
-const introductoryPlayback={timer:null,observer:null,playing:false,visible:false,started:false,finished:false,remaining:0,deadline:0};
+const introductoryPlayback={timer:null,observer:null,playing:false,visible:false,started:false,remaining:0,deadline:0,pointerHeld:false,focusHeld:false,historyHeld:false};
 const introductoryReducedMotion=()=>matchMedia('(prefers-reduced-motion: reduce)').matches;
+const introductoryHeld=()=>introductoryPlayback.pointerHeld||introductoryPlayback.focusHeld||introductoryPlayback.historyHeld;
+
+function syncIntroductoryCases(){
+  document.querySelectorAll('[data-intro-case]').forEach(button=>button.setAttribute('aria-pressed',String(Number(button.dataset.introCase)===introductoryDialogue)));
+}
 
 function introductoryDialoguePanel() {
   const c=introductoryDialogues[introductoryDialogue],stage=c.stages[introductoryStep];
-  const complete=introductoryVisibleTurns===2;
-  const reading=complete?stage:introductoryStep>0?c.stages[introductoryStep-1]:null;
-  const running=introductoryPlayback.playing&&introductoryPlayback.visible&&!document.hidden;
+  const complete=introductoryVisibleTurns===2,readingStep=complete?introductoryStep:introductoryStep-1;
+  const reading=readingStep>=0?c.stages[readingStep]:null;
   const turns=stage.turns.slice(0,introductoryVisibleTurns).map(([speaker,text],j)=>`<li class="is-current ${j===1?'intro-reply':''}" style="--turn-order:${j}"><div class="intro-turn-speaker"><span>${String(introductoryStep*2+j+1).padStart(2,'0')}</span>${speaker}</div><blockquote>${safe(text)}</blockquote></li>`).join('');
   const history=c.stages.slice(0,introductoryStep).map((s,i)=>`<div><span>${introductoryStageLabels[i]}</span>${s.turns.map(([speaker,text])=>`<p><b>${speaker}</b> ${safe(text)}</p>`).join('')}</div>`).join('');
-  return `<div class="intro-player-toolbar"><div><span class="intro-playback-dot ${running?'is-playing':''}" aria-hidden="true"></span><span>${introductoryPlayback.finished?'Conversation complete':running?'Playing':introductoryPlayback.started?'Paused':'Watch the conversation'}</span></div><div><button type="button" data-intro-play aria-label="${introductoryPlayback.playing?'Pause conversation':'Play conversation'}"><span aria-hidden="true">${introductoryPlayback.playing?'&#10074;&#10074;':'&#9654;'}</span>${introductoryPlayback.playing?'Pause':introductoryPlayback.finished?'Play again':'Play'}</button><button type="button" data-intro-replay><span aria-hidden="true">&#8634;</span>Replay</button></div></div><nav class="intro-story-progress" aria-label="Conversation stages">${introductoryStageLabels.map((label,i)=>`<button type="button" data-intro-step="${i}" aria-pressed="${i===introductoryStep}" ${i===introductoryStep?'aria-current="step"':''}><span aria-hidden="true">${i<introductoryStep?'&#10003;':String(i+1)}</span>${label}<i aria-hidden="true" style="transform:scaleX(${i<introductoryStep?1:i===introductoryStep?introductoryVisibleTurns/2:0})"></i></button>`).join('')}</nav><div class="intro-dialogue-record intro-motion-scene"><div class="intro-record-heading"><span>${c.context}</span><span>Turn ${introductoryStep*2+introductoryVisibleTurns} of 8</span></div><div class="intro-active-exchange" data-exchange-key="${introductoryDialogue}-${introductoryStep}" data-visible-turns="${introductoryVisibleTurns}">${stage.time?`<p class="intro-scene-time">${stage.time}</p>`:''}<ol class="intro-turns">${turns}</ol>${!complete?`<div class="intro-reply-cue" aria-label="Next reply"><span>${stage.turns[1][0]}</span><i></i><i></i><i></i></div>`:''}</div><div class="intro-scene-footer"><button type="button" class="intro-follow-button" data-intro-next>${!complete?'Show the reply':stage.next||'Read from the beginning'}<span aria-hidden="true">${stage.next?'&#8594;':'&#8630;'}</span></button>${history?`<details class="intro-conversation-history"><summary>Earlier exchanges (${introductoryStep*2} turns)</summary>${history}</details>`:''}</div></div><aside class="intro-dialogue-reading" aria-live="${running?'off':'polite'}" aria-atomic="true"><div class="intro-reading-content" data-reading-key="${introductoryDialogue}-${reading?introductoryStep-(complete?0:1):-1}"><span>${reading?introductoryStageLabels[introductoryStep-(complete?0:1)]:'First exchange'}</span><h3>${reading?reading.title:'Watch the exchange unfold.'}</h3><p>${reading?reading.copy:'Read the two replies before drawing a conclusion about what the participants know or need.'}</p>${complete&&introductoryStep===c.stages.length-1?`<div class="intro-story-lesson"><h4>What this illustrates</h4><p>${c.lesson}</p><a href="./research.html#theory">State, trajectory, and initiative &#8599;</a></div>`:''}</div></aside>`;
+  return `<nav class="intro-story-progress" aria-label="Conversation stages">${introductoryStageLabels.map((label,i)=>`<button type="button" data-intro-step="${i}" aria-pressed="${i===introductoryStep}" ${i===introductoryStep?'aria-current="step"':''}><span aria-hidden="true">${i<introductoryStep?'&#10003;':String(i+1)}</span>${label}<i aria-hidden="true" style="transform:scaleX(${i<introductoryStep?1:i===introductoryStep?introductoryVisibleTurns/2:0})"></i></button>`).join('')}</nav><div class="intro-dialogue-record intro-motion-scene" tabindex="0" aria-label="Conversation. Focus here to hold the current exchange."><div class="intro-record-heading"><span>${c.context}</span><span>Turn ${introductoryStep*2+introductoryVisibleTurns} of 8</span></div><div class="intro-active-exchange" data-exchange-key="${introductoryDialogue}-${introductoryStep}" data-visible-turns="${introductoryVisibleTurns}">${stage.time?`<p class="intro-scene-time">${stage.time}</p>`:''}<ol class="intro-turns">${turns}</ol>${!complete?`<div class="intro-reply-cue" aria-label="Next reply"><span>${stage.turns[1][0]}</span><i></i><i></i><i></i></div>`:''}</div>${history?`<details class="intro-conversation-history"><summary>Earlier exchanges (${introductoryStep*2} turns)</summary>${history}</details>`:''}</div><aside class="intro-dialogue-reading" aria-live="off"><div class="intro-reading-content" data-reading-key="${introductoryDialogue}-${readingStep}"><span>${reading?introductoryStageLabels[readingStep]:'First exchange'}</span><h3>${reading?reading.title:'Watch the exchange unfold.'}</h3><p>${reading?introductorySummaries[introductoryDialogue][readingStep]:'The next reply reveals what the participants know or need.'}</p>${complete&&introductoryStep===c.stages.length-1?`<div class="intro-story-lesson"><h4>What this illustrates</h4><p>${introductoryTakeaways[introductoryDialogue]}</p><a href="./research.html#theory">State, trajectory, and initiative &#8599;</a></div>`:''}</div></aside>`;
 }
 
 function proactivityOpening() {
-  return `<section id="beneath-the-words" class="proactivity-opening" aria-labelledby="proactivity-heading"><div class="intro-history"><span class="intro-eyebrow">Proactiveness</span><div><p>In their 1995 account of agency, Michael Wooldridge and Nicholas R. Jennings included taking initiative toward a goal. In conversation, that may begin with checking an assumption the other person has left unstated.</p></div></div><div class="intro-section-heading"><div><span class="intro-eyebrow">Examples</span><h2 id="proactivity-heading">What happens<br/><em>after the reply?</em></h2></div><p>Three authored examples. Watch each conversation unfold, or pause to explore an exchange.</p></div><div class="intro-case-selector" role="group" aria-label="Choose a conversation">${introductoryDialogues.map((c,i)=>`<button data-intro-case="${i}" aria-pressed="${i===introductoryDialogue}"><span>0${i+1}</span>${c.name}<b aria-hidden="true">&#8599;</b></button>`).join('')}</div><div id="intro-dialogue-panel" class="intro-dialogue-panel">${introductoryDialoguePanel()}</div></section>`;
+  return `<section id="beneath-the-words" class="proactivity-opening" aria-labelledby="proactivity-heading"><div class="intro-history"><span class="intro-eyebrow">Proactiveness</span><div><p>In their 1995 account of agency, Michael Wooldridge and Nicholas R. Jennings included taking initiative toward a goal. In conversation, that may begin with checking an assumption the other person has left unstated.</p></div></div><div class="intro-section-heading"><div><span class="intro-eyebrow">Examples</span><h2 id="proactivity-heading">What happens<br/><em>after the reply?</em></h2></div><p>Three authored examples on a continuous loop. Select a stage or hover over the dialogue to read at your own pace.</p></div><div class="intro-case-selector" role="group" aria-label="Choose a conversation">${introductoryDialogues.map((c,i)=>`<button data-intro-case="${i}" aria-pressed="${i===introductoryDialogue}"><span>0${i+1}</span>${c.name}<b aria-hidden="true">&#8599;</b></button>`).join('')}</div><div id="intro-dialogue-panel" class="intro-dialogue-panel">${introductoryDialoguePanel()}</div></section>`;
 }
 
 function updateIntroductoryPanel(focusSelector=''){
@@ -83,24 +97,25 @@ function updateIntroductoryPanel(focusSelector=''){
   if(!panel)return;
   const active=document.activeElement;
   if(!focusSelector&&panel.contains(active)){
-    if(active.matches('[data-intro-play]'))focusSelector='[data-intro-play]';
-    else if(active.matches('[data-intro-replay]'))focusSelector='[data-intro-replay]';
-    else if(active.matches('[data-intro-next]'))focusSelector='[data-intro-next]';
+    if(active.matches('.intro-motion-scene'))focusSelector='.intro-motion-scene';
     else if(active.matches('.intro-conversation-history>summary'))focusSelector='.intro-conversation-history>summary';
     else if(active.matches('[data-intro-step]'))focusSelector=`[data-intro-step="${active.dataset.introStep}"]`;
   }
   const oldReading=panel.querySelector('[data-reading-key]')?.dataset.readingKey;
   const oldExchange=panel.querySelector('[data-exchange-key]')?.dataset.exchangeKey;
   const oldCount=Number(panel.querySelector('[data-visible-turns]')?.dataset.visibleTurns||0);
-  const historyOpen=panel.querySelector('.intro-conversation-history')?.open;
+  const historyOpen=oldExchange?.split('-')[0]===String(introductoryDialogue)&&panel.querySelector('.intro-conversation-history')?.open;
   panel.innerHTML=introductoryDialoguePanel();
-  const currentTurns=panel.querySelectorAll('.intro-turns li');
   const exchangeChanged=oldExchange!==`${introductoryDialogue}-${introductoryStep}`;
-  currentTurns.forEach((turn,i)=>turn.classList.toggle('intro-turn-enter',exchangeChanged||i>=oldCount));
+  panel.querySelectorAll('.intro-turns li').forEach((turn,i)=>turn.classList.toggle('intro-turn-enter',exchangeChanged||introductoryVisibleTurns<oldCount||i>=oldCount));
   const newReading=panel.querySelector('[data-reading-key]');
   if(newReading&&oldReading!==newReading.dataset.readingKey)newReading.classList.add('intro-reading-enter');
   if(historyOpen){const history=panel.querySelector('.intro-conversation-history');if(history)history.open=true;}
   if(focusSelector)panel.querySelector(focusSelector)?.focus({preventScroll:true});
+  introductoryPlayback.pointerHeld=Boolean(panel.querySelector('.intro-motion-scene:hover,.intro-dialogue-reading:hover'));
+  introductoryPlayback.focusHeld=panel.contains(document.activeElement);
+  introductoryPlayback.historyHeld=Boolean(panel.querySelector('.intro-conversation-history[open]'));
+  syncIntroductoryCases();
 }
 
 function clearIntroductoryTimer(preserve=false){
@@ -114,13 +129,13 @@ function clearIntroductoryTimer(preserve=false){
 
 function introductoryReadingTime(){
   const stage=introductoryDialogues[introductoryDialogue].stages[introductoryStep];
-  const text=introductoryVisibleTurns===1?stage.turns[0][1]:stage.turns[1][1]+' '+stage.copy+(introductoryStep===3?' '+introductoryDialogues[introductoryDialogue].lesson:'');
+  const text=introductoryVisibleTurns===1?stage.turns[0][1]:stage.turns[1][1]+' '+introductorySummaries[introductoryDialogue][introductoryStep]+(introductoryStep===3?' '+introductoryTakeaways[introductoryDialogue]:'');
   const words=text.trim().split(/\s+/).length;
-  return introductoryVisibleTurns===1?Math.min(5500,Math.max(2200,words*210+700)):Math.min(16000,Math.max(6500,words*190+1200));
+  return introductoryVisibleTurns===1?Math.min(1400,Math.max(850,words*65+350)):Math.min(4800,Math.max(3400,words*90+700));
 }
 
 function scheduleIntroductoryPlayback(){
-  if(introductoryPlayback.timer!==null||!introductoryPlayback.playing||!introductoryPlayback.visible||document.hidden||!document.getElementById('intro-dialogue-panel'))return;
+  if(introductoryPlayback.timer!==null||!introductoryPlayback.playing||!introductoryPlayback.visible||introductoryHeld()||introductoryReducedMotion()||document.hidden||!document.getElementById('intro-dialogue-panel'))return;
   const delay=introductoryPlayback.remaining||introductoryReadingTime();
   introductoryPlayback.deadline=performance.now()+delay;
   introductoryPlayback.remaining=0;
@@ -129,7 +144,7 @@ function scheduleIntroductoryPlayback(){
     if(!introductoryPlayback.playing)return;
     if(introductoryVisibleTurns===1)introductoryVisibleTurns=2;
     else if(introductoryStep<3){introductoryStep++;introductoryVisibleTurns=1;}
-    else{introductoryPlayback.playing=false;introductoryPlayback.finished=true;}
+    else{introductoryDialogue=(introductoryDialogue+1)%introductoryDialogues.length;introductoryStep=0;introductoryVisibleTurns=1;}
     updateIntroductoryPanel();
     scheduleIntroductoryPlayback();
   },delay);
@@ -138,19 +153,12 @@ function scheduleIntroductoryPlayback(){
 function startIntroductoryPlayback(restart=false){
   const remaining=restart?0:introductoryPlayback.remaining;
   clearIntroductoryTimer();
-  if(restart||introductoryPlayback.finished||!introductoryPlayback.started){introductoryStep=0;introductoryVisibleTurns=1;}
+  if(restart||!introductoryPlayback.started){introductoryStep=0;introductoryVisibleTurns=introductoryReducedMotion()?2:1;}
   introductoryPlayback.started=true;
-  introductoryPlayback.finished=false;
   introductoryPlayback.playing=true;
   introductoryPlayback.remaining=remaining;
   updateIntroductoryPanel();
   scheduleIntroductoryPlayback();
-}
-
-function pauseIntroductoryPlayback(){
-  clearIntroductoryTimer(true);
-  introductoryPlayback.playing=false;
-  updateIntroductoryPanel();
 }
 
 function setupIntroductoryPlayer(){
@@ -164,7 +172,7 @@ function setupIntroductoryPlayer(){
     if(visible===introductoryPlayback.visible)return;
     introductoryPlayback.visible=visible;
     if(!visible){clearIntroductoryTimer(true);return;}
-    if(!introductoryPlayback.started&&!introductoryReducedMotion())startIntroductoryPlayback(true);
+    if(!introductoryPlayback.started)startIntroductoryPlayback(true);
     else{updateIntroductoryPanel();scheduleIntroductoryPlayback();}
   },{threshold:[0,.35],rootMargin:'-100px 0px -30px 0px'});
   introductoryPlayback.observer.observe(panel);
@@ -172,49 +180,53 @@ function setupIntroductoryPlayer(){
 
 document.addEventListener('visibilitychange',()=>{
   if(document.hidden)clearIntroductoryTimer(true);
-  else{scheduleIntroductoryPlayback();if(document.getElementById('intro-dialogue-panel'))updateIntroductoryPanel();}
+  else scheduleIntroductoryPlayback();
 });
 window.addEventListener('pagehide',()=>clearIntroductoryTimer(true));
 
 document.addEventListener('click',event=>{
   const choose=event.target.closest('[data-intro-case]');
-  if(choose){
-    clearIntroductoryTimer();
-    introductoryDialogue=Number(choose.dataset.introCase);
-    introductoryStep=0;
-    introductoryVisibleTurns=2;
-    introductoryPlayback.playing=false;
-    introductoryPlayback.finished=false;
-    document.querySelectorAll('[data-intro-case]').forEach(b=>b.setAttribute('aria-pressed',String(Number(b.dataset.introCase)===introductoryDialogue)));
-    if(introductoryReducedMotion()){introductoryPlayback.started=true;updateIntroductoryPanel();}
-    else startIntroductoryPlayback(true);
-  }
+  if(choose){introductoryDialogue=Number(choose.dataset.introCase);startIntroductoryPlayback(true);}
   const step=event.target.closest('[data-intro-step]');
   if(step){
     clearIntroductoryTimer();
-    introductoryPlayback.playing=false;
+    introductoryPlayback.playing=true;
     introductoryPlayback.started=true;
-    introductoryPlayback.finished=false;
     introductoryStep=Number(step.dataset.introStep);
     introductoryVisibleTurns=2;
     updateIntroductoryPanel(`[data-intro-step="${introductoryStep}"]`);
+    scheduleIntroductoryPlayback();
   }
-  if(event.target.closest('[data-intro-next]')){
-    clearIntroductoryTimer();
-    introductoryPlayback.playing=false;
-    introductoryPlayback.started=true;
-    introductoryPlayback.finished=false;
-    if(introductoryVisibleTurns===1)introductoryVisibleTurns=2;
-    else introductoryStep=(introductoryStep+1)%4;
-    updateIntroductoryPanel('[data-intro-next]');
-  }
-  if(event.target.closest('[data-intro-play]')){
-    if(introductoryPlayback.playing)pauseIntroductoryPlayback();
-    else startIntroductoryPlayback();
-  }
-  if(event.target.closest('[data-intro-replay]'))startIntroductoryPlayback(true);
 });
 
+function introductoryHoverTarget(node){
+  return node instanceof Element&&node.closest('#intro-dialogue-panel .intro-motion-scene,#intro-dialogue-panel .intro-dialogue-reading');
+}
+document.addEventListener('pointerover',event=>{
+  if(event.pointerType!=='mouse'||!introductoryHoverTarget(event.target))return;
+  introductoryPlayback.pointerHeld=true;
+  clearIntroductoryTimer(true);
+});
+document.addEventListener('pointerout',event=>{
+  if(event.pointerType!=='mouse'||!introductoryHoverTarget(event.target)||introductoryHoverTarget(event.relatedTarget))return;
+  introductoryPlayback.pointerHeld=false;
+  scheduleIntroductoryPlayback();
+});
+document.addEventListener('focusin',event=>{
+  const panel=document.getElementById('intro-dialogue-panel');
+  introductoryPlayback.focusHeld=Boolean(panel?.contains(event.target));
+  if(introductoryPlayback.focusHeld)clearIntroductoryTimer(true);
+  else scheduleIntroductoryPlayback();
+});
+document.addEventListener('focusout',event=>{
+  const panel=document.getElementById('intro-dialogue-panel');
+  if(!panel?.contains(event.target)||panel.contains(event.relatedTarget))return;
+  introductoryPlayback.focusHeld=false;
+  scheduleIntroductoryPlayback();
+});
 document.addEventListener('toggle',event=>{
-  if(event.target.matches('.intro-conversation-history')&&event.target.open&&introductoryPlayback.playing)pauseIntroductoryPlayback();
+  if(!event.target.matches('.intro-conversation-history'))return;
+  introductoryPlayback.historyHeld=event.target.open;
+  if(event.target.open)clearIntroductoryTimer(true);
+  else scheduleIntroductoryPlayback();
 },true);
