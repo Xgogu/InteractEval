@@ -73,7 +73,7 @@ const introductoryTakeaways=[
 let introductoryVisibleTurns=2;
 const introductoryPlayback={timer:null,observer:null,playing:false,visible:false,started:false,remaining:0,deadline:0,pointerHeld:false,focusHeld:false,historyHeld:false};
 const introductoryReducedMotion=()=>matchMedia('(prefers-reduced-motion: reduce)').matches;
-const introductoryHeld=()=>introductoryPlayback.pointerHeld||introductoryPlayback.focusHeld||introductoryPlayback.historyHeld;
+const introductoryHeld=()=>introductoryPlayback.focusHeld||introductoryPlayback.historyHeld||(introductoryPlayback.pointerHeld&&introductoryVisibleTurns===2);
 
 function syncIntroductoryCases(){
   document.querySelectorAll('[data-intro-case]').forEach(button=>button.setAttribute('aria-pressed',String(Number(button.dataset.introCase)===introductoryDialogue)));
@@ -205,7 +205,7 @@ function introductoryHoverTarget(node){
 document.addEventListener('pointerover',event=>{
   if(event.pointerType!=='mouse'||!introductoryHoverTarget(event.target))return;
   introductoryPlayback.pointerHeld=true;
-  clearIntroductoryTimer(true);
+  if(introductoryHeld())clearIntroductoryTimer(true);
 });
 document.addEventListener('pointerout',event=>{
   if(event.pointerType!=='mouse'||!introductoryHoverTarget(event.target)||introductoryHoverTarget(event.relatedTarget))return;
