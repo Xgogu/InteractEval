@@ -154,6 +154,8 @@
 .intro-motion-scene .intro-turn-speaker{font-size:13px;gap:9px}
 .intro-motion-scene .intro-conversation-history{margin-top:0;padding-top:8px}
 .intro-motion-scene .intro-reply-cue{min-height:32px;margin:8px 0 14px 28px}
+.intro-motion-scene .intro-turn-placeholder{position:relative;visibility:hidden}
+.intro-motion-scene .intro-turn-placeholder .intro-reply-cue{visibility:visible;position:absolute;top:22px;left:0;margin:0;min-height:0}
 .intro-dialogue-reading{padding-top:8px}
 .intro-dialogue-reading h3{font-size:clamp(27px,2.4vw,32px);line-height:1.15;margin:14px 0}
 .intro-dialogue-reading p{font-size:15px;line-height:1.75}
