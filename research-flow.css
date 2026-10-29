@@ -1,0 +1,103 @@
+/* Let prose use the space provided by the page rather than a fixed text column. */
+.research-restored .article-shell{width:min(1320px,100%);margin-inline:auto;grid-template-columns:160px minmax(0,1fr);gap:50px}
+.research-restored .journal-section-heading,.research-restored .journal-section-heading>div{width:100%;min-width:0}
+.research-restored .journal-section-heading :is(h2,p){width:100%;max-width:none;white-space:normal;text-wrap:wrap;word-break:normal;overflow-wrap:normal;hyphens:none}
+.research-restored .journal-section-heading p{line-height:1.75}
+.intro-dialogue-reading h3{max-width:none;text-wrap:wrap;word-break:normal;hyphens:none}
+.intro-section-heading>p{max-width:none;text-wrap:wrap}
+.research-feature :is(.theory-essay h3,.rubric-reading h3,.scenario-selection h4,.pipeline-nodes strong){text-wrap:wrap;word-break:normal;overflow-wrap:normal;hyphens:none}
+.research-feature .research-theory-panel{display:block;margin-top:24px}
+.research-feature .theory-essay{display:grid;grid-template-columns:minmax(150px,.65fr) minmax(0,2fr);gap:10px 28px;max-width:none;margin-top:24px;align-items:start}
+.research-feature .theory-essay h3{font:400 28px/1.2 var(--serif);margin:0;color:#34543a}
+.research-feature .theory-essay>p{font:15px/1.8 var(--sans);margin:0}
+.research-feature .theory-essay .mechanism-context,.research-feature .theory-essay .record-context-link{grid-column:2}
+.mechanism-flow{margin:0;background:#eef2e7;border-radius:12px;overflow:hidden}
+.mechanism-flow-heading{display:flex;justify-content:space-between;align-items:baseline;gap:20px;padding:23px 26px 0}
+.mechanism-flow-heading>span{font:400 27px/1.2 var(--serif);color:#35573c}
+.mechanism-flow-heading>small{font:13px/1.6 var(--sans);color:#53634f}
+.mechanism-flow-map{position:relative;height:400px}
+.mechanism-links{position:absolute;inset:0;width:100%;height:100%;pointer-events:none;overflow:visible}
+.mechanism-links-narrow{display:none}
+.mechanism-wire{fill:none;stroke:#a8bca0;stroke-width:1.6;vector-effect:non-scaling-stroke}
+.mechanism-wire.is-conditional{stroke:#9c927d;stroke-dasharray:5 7}
+.mechanism-current{fill:none;stroke:#557b4d;stroke-width:2.3;stroke-linecap:round;stroke-dasharray:9 191;vector-effect:non-scaling-stroke;animation:mechanism-flow-forward 3.4s linear infinite;animation-delay:var(--flow-delay,0s)}
+.mechanism-node{position:absolute;left:3%;top:90px;width:24%;height:110px;padding:15px;border:1px solid #c9d6bf;border-radius:9px;background:#f8f9f2;display:flex;flex-direction:column;justify-content:center;align-items:center;gap:8px;text-align:center;color:#34543a}
+.mechanism-node>strong{font:500 16px/1.45 var(--sans)}
+.mechanism-node>span{font:13px/1.5 var(--sans);color:#53634f}
+.mechanism-node-1{left:38%}.mechanism-node-2{left:73%}
+.mechanism-node-3{left:38%;top:290px;height:90px}
+.mechanism-node[aria-pressed=true]{border-color:#5c7f50;background:#e1ebd6;box-shadow:inset 0 0 0 1px #5c7f50}
+.mechanism-node:hover{background:#e8efdf}
+.mechanism-node:focus-visible{outline:2px solid #9a6b4d;outline-offset:4px}
+.mechanism-node.is-projected{border-style:dashed;background:#f4f1e8}
+.mechanism-flow[data-kind=movie] .mechanism-node-0,.mechanism-flow[data-kind=movie] .mechanism-node-1{top:125px}
+.mechanism-flow[data-kind=movie] .mechanism-node-2{top:45px}
+.mechanism-flow[data-kind=movie] .mechanism-node-3{left:73%;top:225px;height:110px}
+.mechanism-flow>figcaption{padding:0 26px 23px;font:13px/1.75 var(--sans);color:#53634f}
+.mechanism-context{margin-top:15px;color:#53634f;font:14px/1.8 var(--sans)}
+.mechanism-context summary{width:fit-content;cursor:pointer;color:#3e5f3e;padding:4px 0}
+.mechanism-context summary:hover{text-decoration:underline;text-underline-offset:4px}
+.mechanism-context p{margin:12px 0 0;font:14px/1.8 var(--sans);max-width:none}
+.research-feature .research-instrument-detail{padding-top:27px;padding-bottom:0}
+.stage-flow-heading h3{font:400 30px/1.2 var(--serif);color:#34543a;margin:0 0 10px}
+.stage-flow-heading p{font:15px/1.75 var(--sans);color:#53634f;margin:0}
+.stage-flow{display:grid;grid-template-columns:minmax(0,1fr) 180px minmax(0,1fr);align-items:stretch;margin-top:24px}
+.stage-flow>section{padding:22px;border-radius:9px;background:#edf2e5;display:flex;flex-direction:column;justify-content:center;min-width:0;gap:12px}
+.stage-flow small{font:13px/1.6 var(--sans);color:#53634f}
+.stage-flow strong{font:500 16px/1.6 var(--sans);color:#34543a}
+.stage-flow>section>div{display:flex;flex-wrap:wrap;gap:7px 13px}
+.stage-flow>section>div>strong{font-size:14px;background:#e0ead5;padding:4px 9px;border-radius:4px}
+.stage-flow-transfer{display:flex;flex-direction:column;justify-content:center;gap:9px;text-align:center;padding:15px 8px}
+.stage-flow-transfer svg{width:100%;height:40px}
+.stage-flow-transfer>span{font:13px/1.6 var(--sans);color:#53634f}
+.research-feature .pipeline-nodes strong{font-size:22px;line-height:1.2}
+.research-feature .pipeline-nodes>button:not(:last-child):after{content:'';height:2px;width:12px;right:-12px;top:50%;background:repeating-linear-gradient(90deg,#bdcdb0 0 4px,transparent 4px 8px);animation:mechanism-pipeline-forward 1.1s linear infinite}
+.research-feature .research-record-sheet h3{font:400 29px/1.2 var(--serif);margin:0 0 12px}
+.research-feature .research-record-sheet header>p{font:14px/1.8 var(--sans);margin:0}
+.research-feature .research-record-sheet dl{margin:16px 0 0}
+.research-feature .research-record-sheet dl>div{padding:9px 0}
+.research-feature .research-record-sheet footer{padding-top:17px}
+.research-feature .rubric-reading h3{font:400 30px/1.15 var(--serif)}
+.research-feature .scenario-selection h4{font:400 29px/1.15 var(--serif);margin:16px 0 6px}
+.scenario-setting{font:14px/1.7 var(--sans);color:#53634f;margin:0 0 15px}
+@keyframes mechanism-flow-forward{to{stroke-dashoffset:-200}}
+@keyframes mechanism-pipeline-forward{to{background-position:16px 0}}
+@media(max-width:1100px){
+ .research-restored .article-shell{grid-template-columns:145px minmax(0,1fr);gap:30px}
+ .mechanism-node{padding:12px;gap:5px}.mechanism-node>strong{font-size:15px;line-height:1.35}.mechanism-node>span{line-height:1.4}
+ .stage-flow{grid-template-columns:minmax(0,1fr) 130px minmax(0,1fr)}
+}
+@media(max-width:800px){
+ .research-restored .article-shell{display:block}
+ .research-feature .theory-essay{grid-template-columns:1fr;gap:12px}
+ .research-feature .theory-essay .mechanism-context,.research-feature .theory-essay .record-context-link{grid-column:1}
+}
+@media(max-width:600px){
+ .mechanism-flow-heading{padding:21px 19px 0;gap:12px;flex-wrap:wrap}
+ .mechanism-flow-heading>span{font-size:26px}
+ .mechanism-flow-map{height:520px}
+ .mechanism-flow[data-kind=movie] .mechanism-flow-map{height:460px}
+ .mechanism-links-wide{display:none}.mechanism-links-narrow{display:block}
+ .mechanism-flow .mechanism-node{left:8%;width:84%;height:82px;padding:12px;gap:4px;top:12px}
+ .mechanism-flow .mechanism-node-1{top:144px}
+ .mechanism-flow .mechanism-node-2{top:276px}
+ .mechanism-flow .mechanism-node-3{top:414px}
+ .mechanism-flow[data-kind=movie] .mechanism-node-0{top:12px}
+ .mechanism-flow[data-kind=movie] .mechanism-node-1{top:144px}
+ .mechanism-flow[data-kind=movie] .mechanism-node-2{left:4%;width:43%;top:332px;height:112px}
+ .mechanism-flow[data-kind=movie] .mechanism-node-3{left:53%;width:43%;top:332px;height:112px}
+ .mechanism-node>strong{font-size:16px}
+ .mechanism-flow>figcaption{padding:0 19px 21px}
+ .stage-flow{grid-template-columns:1fr}
+ .stage-flow-transfer{padding:9px;gap:0;min-height:120px}
+ .stage-flow-transfer svg{width:80px;transform:rotate(90deg);height:40px;margin:20px auto}
+ .research-feature .pipeline-nodes{grid-template-columns:1fr;gap:18px}
+ .research-feature .pipeline-nodes>button{display:grid;grid-template-columns:25px 27px minmax(0,1fr);align-items:center;gap:12px;text-align:left;padding:20px}
+ .research-feature .pipeline-nodes>button>span{grid-column:3}
+ .research-feature .pipeline-nodes>button:not(:last-child):after{display:block;width:2px;height:18px;top:auto;bottom:-18px;left:50%;right:auto;background:repeating-linear-gradient(0deg,#bdcdb0 0 4px,transparent 4px 8px);animation:mechanism-pipeline-down 1.1s linear infinite}
+ .research-feature .pipeline-nodes strong{font-size:23px}
+}
+@keyframes mechanism-pipeline-down{to{background-position:0 -16px}}
+@media(prefers-reduced-motion:reduce){
+ .mechanism-current,.research-feature .pipeline-nodes>button:not(:last-child):after{animation:none}
+}
