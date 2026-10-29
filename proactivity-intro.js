@@ -51,7 +51,6 @@ function proactivityHero() {
     return { low: Math.min(...scores), high: Math.max(...scores) };
   });
   return editorialHero({
-    kicker: 'Main',
     body: `<p class="hero-method-summary">The framework follows participant states and event trajectories across turns, then evaluates six levels of interaction capability.</p><div class="hero-entry-links"><a href="#model-readout">Explore the results <span aria-hidden="true">&#8595;</span></a><a href="./research.html">How evaluation works <span aria-hidden="true">&#8599;</span></a></div>`,
     title: 'Can a model<br/><em>take the next step?</em>',
     deck: 'InteractEval is a benchmark and evaluation framework for multi-turn interaction. It measures how models understand changing situations, take useful initiative, and follow through.',
