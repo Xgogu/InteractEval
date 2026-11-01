@@ -1,6 +1,6 @@
 'use strict';
 const $=s=>document.querySelector(s),safe=(s='')=>String(s).replace(/[&<>"']/g,c=>({'&':'&amp;','<':'&lt;','>':'&gt;','"':'&quot;',"'":'&#39;'}[c]));
-const REV='results-hierarchy-20261101a',levelNames=['Goal preservation','Information uptake','State progression','Contextual expression','Proactive agency','Long-horizon coherence'];
+const REV='atlas-20261102b',levelNames=['Goal preservation','Information uptake','State progression','Contextual expression','Proactive agency','Long-horizon coherence'];
 let publication,researchEvidence,exhibits=[],route='home',metric='composite',agentMetric='composite',architecture='All',caseQuery='',casePurpose='all',view='chart',sortDown=true;
 const modelIconFiles=[[/^claude(?:[-\s]|$)/i,'claude.svg'],[/^(?:gpt|chatgpt|openai)(?:[-\s]|$)/i,'openai.svg'],[/^gemini(?:[-\s]|$)/i,'gemini.png'],[/^deepseek(?:[-\s]|$)/i,'deepseek-product.svg'],[/^qwen/i,'qwen.png'],[/^kimi(?:[-\s]|$)/i,'kimi.png'],[/^(?:glm|z[.-]?ai)(?:[-\s]|$)/i,'glm.svg']];
 const assets=name=>'./assets/providers/'+(modelIconFiles.find(([pattern])=>pattern.test(String(name)))?.[1]||'model.svg');
@@ -52,7 +52,7 @@ function research(){return researchArticle();}
 function trends(){return `<div class="section-top"><h1>Cognition & interaction</h1></div><p class="page-deck">Published dimensions of goal preservation, adaptation, and long-horizon coherence.</p><div class="paper-two">${metricCard('stage0',10)}${metricCard('stage1',10)}${metricCard('stage2',10)}${metricCard('coherence',10)}</div><p class="paper-footnote">All four profiles reproduce Table 4. Interest-change relationships are not inferred from the example library.</p>`;}
 function render(){
  const [hash,query='']=location.hash.slice(1).split('?'),page=location.pathname.split('/').pop();
- const resultAnchors=['beneath-the-words','model-readout','capability','comparisons','stages','scenarios','reliability','process','duration','architectures','partners','takeaways','notes','outcomes','coverage'];
+ const resultAnchors=['key-findings','illustrations','beneath-the-words','model-readout','capability','comparisons','stages','scenarios','reliability','process','duration','architectures','partners','takeaways','notes','outcomes','coverage'];
  if(page==='research.html'&&['model-readout','capability','process','duration','partners','outcomes','coverage'].includes(hash)){location.replace('./index.html#'+({outcomes:'process',coverage:'partners'}[hash]||hash));return;}
  route=page==='research.html'?'research':page==='showcase.html'?'cases':resultAnchors.includes(hash)?'home':hash||'home';
  if(!['home','models','agents','cases','research','trends','multimodal','leaderboards','compare','architecture'].includes(route)&&!route.startsWith('model/'))route='home';

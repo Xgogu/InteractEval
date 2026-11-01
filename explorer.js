@@ -72,12 +72,13 @@ function journalSection(id,index,kicker,title,deck,body){return `<section id="${
 function researchArticle(){return researchIntroduction();}
 
 function afterExplorerRender(){
+  syncAtlasLayout();
   syncEditorialHeader();
   $('#app').classList.toggle('journal-app',route==='research'||route==='home');
   setupIntroductoryPlayer();
   if(researchObserver)researchObserver.disconnect();
   if(route==='research'||route==='home'){
-    researchObserver=new IntersectionObserver(entries=>{for(const entry of entries)if(entry.isIntersecting)document.querySelectorAll('.article-rail [data-research-section]').forEach(a=>a.classList.toggle('active',a.dataset.researchSection===entry.target.id));},{rootMargin:'-90px 0px -55% 0px'});
+    researchObserver=new IntersectionObserver(entries=>{for(const entry of entries)if(entry.isIntersecting&&route!=='home')document.querySelectorAll('.article-rail [data-research-section]').forEach(a=>a.classList.toggle('active',a.dataset.researchSection===entry.target.id));},{rootMargin:'-90px 0px -55% 0px'});
     document.querySelectorAll('.article-section').forEach(s=>researchObserver.observe(s));
     const requested=location.hash.slice(1),aliases={outcomes:'process',coverage:'comparisons',capability:'model-readout',partners:'comparisons',duration:'comparisons',architectures:'comparisons',stages:'comparisons',scenarios:'comparisons',reliability:'comparisons',method:'evidence',notes:'takeaways'},target=aliases[requested]||requested;
     if(lastJournalAnchor!==location.pathname+location.hash){lastJournalAnchor=location.pathname+location.hash;if(document.getElementById(target))requestAnimationFrame(()=>document.getElementById(target)?.scrollIntoView({block:'start',behavior:'instant'}));}
