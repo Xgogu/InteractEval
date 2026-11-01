@@ -48,4 +48,5 @@ def enrich_publication(paper, pdf):
     for key, table in [('behavior', 8), ('partners', 12), ('self_play', 13), ('user_role', 14), ('reliability', 21), ('judges', 22), ('duration', 30), ('pairings', 11)]:
         page = next(i + 1 for i, p in enumerate(pdf) if f'Table {table}:' in p.get_text())
         paper['tables'][key] = {'table': table, 'page': page}
-    return paper
+    from import_comparisons import enrich_comparisons
+    return enrich_comparisons(paper, pdf)

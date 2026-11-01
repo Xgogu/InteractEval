@@ -19,7 +19,7 @@ function navigationIcon(name){return `<svg viewBox="0 0 24 24" fill="none" strok
 
 function renderEditorialNavigation(){
   const base='./index.html#',groups={
-    models:{label:'Models',title:'Model evaluations',intro:'42 measures, with a guide to what each one tells you.',href:base+'models',items:[
+    models:{label:'Models',title:'Model evaluations',intro:'Explore the measures, with a guide to what each one tells you.',href:base+'models',items:[
       ['All evaluations','Every measure in one workspace.','models','overview'],
       ['Capabilities','Six levels, from goals to sustained initiative.','models?category=Capabilities','capability'],
       ['Scenario conditions','Purpose, information, and world setting.','models?category=Scenarios','scenario'],
@@ -41,7 +41,9 @@ function renderEditorialNavigation(){
     ]},
     leaderboards:{label:'Leaderboards',title:'Model rankings',intro:'Start with the ranking. Explore the capabilities behind it.',href:base+'leaderboards',items:[
       ['Overall ranking','Compare scores on the same scale.','leaderboards','overview'],
-      ['Capability profiles','See where the differences emerge.','models?category=Capabilities','capability']
+      ['Interaction stages','Passive, responsive, and active adaptation.','leaderboards?metric=stage2','capability'],
+      ['Scenario performance','Compare task-oriented and open-ended settings.','leaderboards?metric=nonfunctional','scenario'],
+      ['Partner-role capability','Compare systems playing the user role.','leaderboards?metric=user-composite','partner']
     ]},
     research:{label:'Research',title:'Research',intro:'The ideas, components, and rules behind InteractEval.',href:'./research.html',items:[
       ['Three theoretical ideas','State, trajectory, and initiative.','./research.html#theory','theory'],
