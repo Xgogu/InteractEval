@@ -1,6 +1,8 @@
 'use strict';
 
 const navigationIcons={
+  stages:'<path d="M3 20h6v-5h6v-5h6V4M3 20V9m0 11h18"/>',
+  architecture:'<rect x="8" y="2" width="8" height="6" rx="1"/><rect x="2" y="16" width="7" height="6" rx="1"/><rect x="15" y="16" width="7" height="6" rx="1"/><path d="M12 8v4H5.5v4M12 12h6.5v4"/>',
   overview:'<path d="M4 17V9m8 8V4m8 13v-6M3 21h18"/>',
   capability:'<path d="m12 3 8 5v8l-8 5-8-5V8Z"/><path d="m4 8 8 5 8-5m-8 5v8"/>',
   scenario:'<rect x="3" y="3" width="7" height="7" rx="1"/><rect x="14" y="3" width="7" height="7" rx="1"/><rect x="3" y="14" width="7" height="7" rx="1"/><rect x="14" y="14" width="7" height="7" rx="1"/>',

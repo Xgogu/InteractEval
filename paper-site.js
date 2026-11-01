@@ -2,7 +2,8 @@
 const $=s=>document.querySelector(s),safe=(s='')=>String(s).replace(/[&<>"']/g,c=>({'&':'&amp;','<':'&lt;','>':'&gt;','"':'&quot;',"'":'&#39;'}[c]));
 const REV='results-hierarchy-20261101a',levelNames=['Goal preservation','Information uptake','State progression','Contextual expression','Proactive agency','Long-horizon coherence'];
 let publication,researchEvidence,exhibits=[],route='home',metric='composite',agentMetric='composite',architecture='All',caseQuery='',casePurpose='all',view='chart',sortDown=true;
-const assets=name=>'./assets/providers/'+(name.startsWith('claude')?'anthropic.svg':name.startsWith('gpt')?'openai.svg':name.startsWith('gemini')?'google.svg':name.startsWith('deepseek')?'deepseek.svg':name.startsWith('qwen')?'alibaba.svg':name.startsWith('kimi')?'kimi.jpg':'zai.svg');
+const modelIconFiles=[[/^claude(?:[-\s]|$)/i,'claude.svg'],[/^(?:gpt|chatgpt|openai)(?:[-\s]|$)/i,'openai.svg'],[/^gemini(?:[-\s]|$)/i,'gemini.png'],[/^deepseek(?:[-\s]|$)/i,'deepseek-product.svg'],[/^qwen/i,'qwen.png'],[/^kimi(?:[-\s]|$)/i,'kimi.png'],[/^(?:glm|z[.-]?ai)(?:[-\s]|$)/i,'glm.svg']];
+const assets=name=>'./assets/providers/'+(modelIconFiles.find(([pattern])=>pattern.test(String(name)))?.[1]||'model.svg');
 const color=name=>name.startsWith('claude')?'#af967c':name.startsWith('gpt')?'#3e6150':name.startsWith('deepseek')?'#668b9e':name.startsWith('gemini')?'#76a9d1':name.startsWith('kimi')?'#7fa590':'#a696ae';
 const number=(v,percent=false)=>percent?(v*100).toFixed(1)+'%':Number(v).toFixed(3);
 const signed=v=>(v>0?'+':'')+number(v);
