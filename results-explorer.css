@@ -18,7 +18,7 @@
 .main-rail-group button:before{content:'';width:5px;height:5px;flex:none;background:#a4b49a}
 .main-rail-group button[aria-current=true]{color:#294e35;background:#e3ebd9}
 .main-rail-group button[aria-current=true]:before{background:#345c3d}
-.main-rail-group button:hover{background:#e9eee1}
+@media(hover:hover) and (pointer:fine){.main-rail-group button:hover{background:#e9eee1}}
 .matrix-toolbar{display:flex;flex-wrap:wrap;justify-content:space-between;gap:8px 20px;align-items:center;margin:26px 0 14px;color:#52624e;font-size:13px}
 .matrix-toolbar p{margin:0!important;font-size:13px!important}
 .matrix-toolbar>span{display:flex;align-items:center;gap:9px}
@@ -37,7 +37,7 @@
 .main-capability-table thead th.active-level-column{background:#e9efdf}
 .main-capability-table tbody th{position:sticky;left:0;z-index:1;background:#f7f7f2}
 .main-capability-table tbody th a{display:flex;align-items:center;gap:8px;font:500 13px/1.5 var(--sans);color:#344b3a;text-decoration:none;padding:4px;white-space:nowrap}
-.main-capability-table tbody th a:hover{text-decoration:underline;text-underline-offset:4px}
+@media(hover:hover) and (pointer:fine){.main-capability-table tbody th a:hover{text-decoration:underline;text-underline-offset:4px}}
 .results-page .main-capability-table tbody td{background:rgba(91,139,105,var(--score-fill));padding:10px 5px;font:13px/1.4 var(--sans);color:#293e2e}
 .main-capability-table tfoot th,.main-capability-table tfoot td{padding:14px 5px;border-top:1px solid #b6c5b0;color:#53634f;font-size:12px;letter-spacing:0}
 .main-capability-table tfoot th{text-align:left;white-space:normal}
@@ -58,7 +58,7 @@
 .main-outcome-wrap{overflow:auto;max-width:100%;scrollbar-width:thin}
 .main-outcome-wrap :is(.journal-outcome-head,.journal-purpose-row){min-width:620px}
 .main-outcome-wrap .journal-purpose-row{text-decoration:none}
-.main-outcome-wrap .journal-purpose-row:hover{background:#eaf0e2}
+@media(hover:hover) and (pointer:fine){.main-outcome-wrap .journal-purpose-row:hover{background:#eaf0e2}}
 .main-comparison-tabs{display:flex;flex-wrap:wrap;gap:8px;margin:24px 0}
 .main-comparison-tabs>button{display:flex;align-items:center;gap:8px;border:1px solid #d3ddc9;border-radius:7px;padding:10px 12px;background:transparent;color:#52664d;font:13px/1.5 var(--sans);cursor:pointer}
 .main-comparison-tabs svg{width:17px;height:17px}
@@ -75,7 +75,7 @@
 .comparison-bars{--model-label:182px;--value-label:65px;--bar-gap:15px;min-width:0;font-variant-numeric:tabular-nums}
 .comparison-bar-axis{display:flex;justify-content:space-between;margin:0 calc(var(--value-label) + var(--bar-gap)) 8px calc(var(--model-label) + var(--bar-gap));color:#63735e;font-size:12px}
 .comparison-bar-row{display:grid;grid-template-columns:var(--model-label) minmax(0,1fr) var(--value-label);align-items:center;gap:var(--bar-gap);min-height:38px;border-radius:5px;padding:6px 0;text-decoration:none!important;color:#3e5742;font:13px/1.5 var(--sans)}
-.comparison-bar-row:hover{background:#eaf0e2}
+@media(hover:hover) and (pointer:fine){.comparison-bar-row:hover{background:#eaf0e2}}
 .comparison-model{display:flex;align-items:center;gap:8px;min-width:0}
 .comparison-model>span{white-space:normal;overflow-wrap:normal;word-break:normal}
 .comparison-model small{font-size:12px;color:#7b8574;min-width:18px}
@@ -96,8 +96,8 @@
 .comparison-data-table th:first-child{text-align:left;min-width:175px;position:sticky;left:0;background:#f7f7f2;z-index:1;font-weight:400}
 .comparison-data-table thead th:first-child{background:#ecf1e3}
 .comparison-data-table a{text-decoration:none}
-.comparison-data-table a:hover{text-decoration:underline}
-.comparison-data-table tbody tr:hover :is(td,th){background:#edf2e5}
+@media(hover:hover) and (pointer:fine){.comparison-data-table a:hover{text-decoration:underline}}
+@media(hover:hover) and (pointer:fine){.comparison-data-table tbody tr:hover :is(td,th){background:#edf2e5}}
 .pairing-readout{display:flex;align-items:center;gap:18px;margin:0 0 24px;padding:17px 20px;background:#e9f0df;border-radius:7px}
 .pairing-readout{position:sticky;top:94px;z-index:3}
 .pairing-readout>div{display:grid;gap:5px;min-width:0}
@@ -118,7 +118,8 @@
 .pairing-matrix td{padding:0}
 .pairing-matrix td button{width:100%;min-height:40px;padding:8px 1px;display:flex;gap:2px;justify-content:center;align-items:center;white-space:nowrap;border:1px solid transparent;border-radius:3px;background:rgba(91,139,105,var(--pair-fill));color:#2e5036;font:13px/1.5 var(--sans);font-variant-numeric:tabular-nums;cursor:pointer}
 .pairing-matrix td button>span{font-size:10px}
-.pairing-matrix td button:hover,.pairing-matrix td button[aria-pressed=true]{border-color:#3d683e;box-shadow:inset 0 0 0 1px #3d683e}
+.pairing-matrix td button[aria-pressed=true]{border-color:#3d683e;box-shadow:inset 0 0 0 1px #3d683e}
+@media(hover:hover) and (pointer:fine){.pairing-matrix td button:hover{border-color:#3d683e;box-shadow:inset 0 0 0 1px #3d683e}}
 .pairing-matrix tr.is-standard-partner th{color:#315a39;background:#e8efdd}
 .architecture-comparison-grid{display:grid;grid-template-columns:repeat(3,minmax(0,1fr));gap:16px}
 .architecture-comparison-grid>article{padding:23px 20px;border:1px solid #d8e1cd;border-radius:8px;background:#eff3e7}

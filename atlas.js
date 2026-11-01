@@ -30,7 +30,31 @@ function syncAtlasLayout(){
  const header=document.querySelector('.masthead');
  if(header){const size=()=>document.documentElement.style.setProperty('--header-height',Math.ceil(header.getBoundingClientRect().height)+'px');size();if(!header.atlasResize){header.atlasResize=new ResizeObserver(size);header.atlasResize.observe(header);}}
  syncAtlasActiveSection();
+ atlasResponsiveTables();
 }
+function atlasResponsiveTables(){
+ document.querySelectorAll('.comparison-data-table,.agent-results-table').forEach(table=>{
+   const wrap=table.parentElement;if(wrap.dataset.atlasCards==='true')return;
+   const heads=[...table.querySelectorAll('thead th')].map(th=>th.textContent.trim());
+   if(heads.length<2)return;
+   const cards=document.createElement('div');cards.className='atlas-comparison-cards';
+   for(const row of table.querySelectorAll('tbody tr')){
+     const cells=[...row.children];if(cells.length!==heads.length)continue;
+     const card=document.createElement('article'),name=document.createElement('div'),list=document.createElement('dl');
+     name.className='atlas-comparison-identity';name.innerHTML=cells[0].innerHTML;card.append(name);
+     cells.slice(1).forEach((cell,i)=>{const item=document.createElement('div'),term=document.createElement('dt'),value=document.createElement('dd');term.textContent=heads[i+1];value.innerHTML=cell.innerHTML;item.append(term,value);list.append(item)});
+     card.append(list);cards.append(card);
+   }
+   wrap.dataset.atlasCards='true';wrap.classList.add('has-atlas-cards');wrap.after(cards);
+ });
+}
+function atlasScrollTo(element){
+ if(!element)return;
+ const instant=document.documentElement.dataset.uiInput==='keyboard'||matchMedia('(prefers-reduced-motion: reduce)').matches;
+ element.scrollIntoView({behavior:instant?'instant':'smooth',block:'start'});
+}
+document.addEventListener('keydown',()=>{document.documentElement.dataset.uiInput='keyboard'},{capture:true});
+document.addEventListener('pointerdown',()=>{document.documentElement.dataset.uiInput='pointer'},{capture:true,passive:true});
 function syncAtlasActiveSection(){
  const sections=[...document.querySelectorAll('.results-page .article-body>.article-section')];if(!sections.length)return;
  const edge=(document.querySelector('.masthead')?.getBoundingClientRect().bottom||0)+85;

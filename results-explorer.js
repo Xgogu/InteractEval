@@ -102,7 +102,8 @@ function refreshMainComparison(scroll=false){
   document.querySelectorAll('[data-main-family]').forEach(button=>button.setAttribute('aria-pressed',String(button.dataset.mainFamily===mainComparisonGroup)));
   document.querySelectorAll('[data-main-comparison]').forEach(button=>{if(button.dataset.mainComparison===mainComparisonMeasure)button.setAttribute('aria-current','true');else button.removeAttribute('aria-current');});
   document.querySelectorAll('[data-main-rail-group]').forEach(detail=>detail.open=detail.dataset.mainRailGroup===mainComparisonGroup);
-  if(scroll)document.getElementById('comparisons').scrollIntoView({behavior:'smooth',block:'start'});
+  atlasResponsiveTables();
+  if(scroll)atlasScrollTo(document.getElementById('comparisons'));
 }
 function selectMainComparison(id,scroll=false){
   const group=mainComparisonGroups.find(group=>group.items.some(item=>item[0]===id));if(!group)return;

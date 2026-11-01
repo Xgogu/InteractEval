@@ -86,8 +86,8 @@ function ArchitecturePair({index,name,values}){
     <text x="6" y={y+10} fontSize="21" fill={ink}>{name}</text>
     {values.map((v,i)=><g key={i}>
       <rect x="132" y={y-10+i*22} width="262" height="13" rx="2" fill="#e3e9dd"/>
-      <rect x="132" y={y-10+i*22} height="13" rx="2" fill={i?rust:ink}
-        width={interpolate(frame,[(.3+index*.25+i*.18)*fps,(1.5+index*.25+i*.18)*fps],[0,v/.07*262],clamped)}/>
+      <rect x="132" y={y-10+i*22} height="13" rx="2" fill={i?rust:ink} width={v/.07*262}
+        style={{transformBox:'fill-box',transformOrigin:'left center',transform:`scaleX(${interpolate(frame,[(.3+index*.25+i*.18)*fps,(1.5+index*.25+i*.18)*fps],[0,1],clamped)})`}}/>
       <text x="475" y={y+2+i*22} fontSize="21" fill={i?rust:ink} textAnchor="end">+{fmt(v)}</text>
     </g>)}
   </g>;
@@ -140,9 +140,8 @@ function ProbeBar({value,index,label}){
   const frame=useCurrentFrame(),{fps}=useVideoConfig(),x=130+index*195;
   return <g>
     <rect x={x} y="70" width="80" height="190" rx="3" fill="#edf2ec"/>
-    <rect x={x} width="80" rx="3" fill={index?rust:ink}
-      y={interpolate(frame,[(.25+index*.4)*fps,(1.5+index*.4)*fps],[260,260-value*1.9],clamped)}
-      height={interpolate(frame,[(.25+index*.4)*fps,(1.5+index*.4)*fps],[0,value*1.9],clamped)}/>
+    <rect x={x} width="80" rx="3" fill={index?rust:ink} y={260-value*1.9} height={value*1.9}
+      style={{transformBox:'fill-box',transformOrigin:'center bottom',transform:`scaleY(${interpolate(frame,[(.25+index*.4)*fps,(1.5+index*.4)*fps],[0,1],clamped)})`}}/>
     <text x={x+40} y={246-value*1.9} textAnchor="middle" fill={index?rust:ink} fontSize="25">{value}%</text>
     <text x={x+40} y="294" textAnchor="middle" fontSize="21" fill={ink}>{label[0]}</text>
     <text x={x+40} y="320" textAnchor="middle" fontSize="21" fill={muted}>{label[1]}</text>
