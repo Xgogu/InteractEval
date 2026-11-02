@@ -24,15 +24,7 @@ function Trace({d,start=.4,end=2.4,color=green,width=3,dashed=false}){const p=us
 function Appear({start=.3,children}){const p=usePhase(start,start+.45);return <g opacity={p}>{children}</g>;}
 function Check({x,y,r=10,color=green}){return <g transform={`translate(${x} ${y})`}><ellipse cy={r+3} rx={r*.9} ry="3" fill={green} opacity=".1"/><circle r={r+2} fill="#f9faf2" stroke={line}/><circle r={r} fill={color}/><path d={`M${-r*.43} 0l${r*.3} ${r*.3} ${r*.6} ${-r*.65}`} fill="none" stroke="white" strokeWidth="2" strokeLinecap="round" strokeLinejoin="round"/></g>;}
 function Flag({x,y}){return <g transform={`translate(${x} ${y})`}><ellipse cy="23" rx="15" ry="4" fill={green} opacity=".1"/><path d="M0 21v-40" stroke={green} strokeWidth="2.5" strokeLinecap="round"/><circle cy="-20" r="2.8" fill="url(#scene-brass)"/><path d="M2-16c9-6 16 5 26 0v17c-10 5-17-6-26 0Z" fill="url(#scene-jade)" stroke={green} strokeWidth="1.1"/><path d="M13-16v18M3-14c8-3 15 5 23 0" fill="none" stroke="#edf3e6" strokeWidth=".8" opacity=".65"/></g>;}
-function Person({x,y,flip=false}){return <g transform={`translate(${x} ${y}) scale(${flip?-1:1} 1)`}>
- <ellipse cy="38" rx="27" ry="5" fill={green} opacity=".09"/>
- <path d="M-7-10H7V6H-7Z" fill="#d9c6a7"/>
- <path d="M-25 34v-9C-25 9-15 0-7 0L0 9 7 0c12 1 19 10 19 25v9Z" fill={flip?'url(#scene-leather)':'url(#scene-jade)'} stroke="#496e55" strokeWidth="1.1"/>
- <path d="m-7 0 7 9 7-9-2 19H-4Z" fill="#fffdf2"/><path d="M-16 15v19M17 15v19M-21 30h11M11 30h11" fill="none" stroke="#476a53" strokeWidth="1" opacity=".6"/>
- <path d="M-13-30c7-12 25-10 28 1l-1 10 4 5-5 2-4 7-13 1-9-10Z" fill="#e8d8b8" stroke="#9b997c" strokeWidth=".8"/>
- <path d="M-13-15c-8-6-8-25 5-27 12-3 24 4 24 11-9 2-16-2-20-6 1 10-3 14-9 15Z" fill={green}/>
- <path d="M-8-16c-5-5-8 0-3 5" fill="#e8d8b8" stroke="#b4a687" strokeWidth="1"/><circle cx="8" cy="-24" r="1.1" fill={green}/><path d="M7-12h5" stroke="#99795d" strokeWidth="1" strokeLinecap="round"/>
- </g>;}
+function Person({x,y,flip=false}){return <g transform={`translate(${x} ${y}) scale(${flip?-1:1} 1)`}><circle cy="-18" r="15" fill={pale} stroke={green} strokeWidth="1.8"/><path d="M-24 34v-8c0-18 10-26 24-26s24 8 24 26v8" fill={pale} stroke={green} strokeWidth="1.8"/><circle cx="5" cy="-19" r="1.8" fill={green}/><path d="M4-12q5 3 8-1" fill="none" stroke={green} strokeWidth="1.5" strokeLinecap="round"/></g>;}
 function Key({x,y,scale=1,opacity=1}){return <g transform={`translate(${x} ${y}) scale(${scale})`} opacity={opacity} fill="none" stroke="url(#scene-brass)" strokeWidth="4" strokeLinecap="round" strokeLinejoin="round"><circle cx="-9" r="7"/><circle cx="-9" r="3.8" stroke="#fff4ce" strokeWidth=".7"/><path d="M-2 0h23m-4 0v6m-7-6v5"/><path d="M-3-1h22" stroke="#f9e9bb" strokeWidth=".9"/></g>;}
 
 function SubmergedState(){
