@@ -282,3 +282,10 @@ html[data-ui-input=keyboard] select,html[data-ui-input=keyboard] select::picker-
 
 .atlas-evidence-grid>.atlas-theory-visual{display:flex;align-items:center;background:#f6f7ef;border-radius:12px;padding:18px 8px}
 .atlas-theory-visual>.atlas-mechanism{width:100%}
+
+/* Leaderboards share the same measure picker as the Main comparisons. */
+.leaderboard-selection>.leaderboard-measure-field{display:grid;gap:8px;width:min(420px,100%);min-width:0;font:400 14px/1.4 var(--sans);color:#52645b}
+.leaderboard-measure-field select{width:100%;min-height:48px;font:500 14px/1.4 var(--sans);border-color:#d5ded5;background-color:#fff;color:#193b30;border-radius:8px}
+.leaderboard-measure-field select:focus-visible{outline:2px solid #52765b;outline-offset:3px}
+.leaderboard-selection .comparison-switch{align-self:end;margin-bottom:2px}
+@media(max-width:600px){.leaderboard-selection>.leaderboard-measure-field{width:100%}.leaderboard-selection .comparison-switch{align-self:start}.leaderboard-measure-field select{font-size:16px}}
