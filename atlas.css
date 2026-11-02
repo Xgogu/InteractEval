@@ -280,5 +280,5 @@ body select:not([multiple]):focus-visible{outline:2px solid #52765b;outline-offs
 html[data-ui-input=keyboard] select,html[data-ui-input=keyboard] select::picker-icon,html[data-ui-input=keyboard] select::picker(select),html[data-ui-input=keyboard] .main-rail-group>div{transition:none!important}
 @media(prefers-reduced-motion:reduce){body select:not([multiple]),body select:not([multiple])::picker-icon,body select:not([multiple])::picker(select),.main-rail-group summary:after,.main-rail-group[open]>div{transition:none!important}}
 
-.atlas-evidence-grid>.atlas-theory-visual{display:flex;align-items:center;background:#f5f8f1;border-radius:12px;padding:18px 8px}
+.atlas-evidence-grid>.atlas-theory-visual{display:flex;align-items:center;background:#f6f7ef;border-radius:12px;padding:18px 8px}
 .atlas-theory-visual>.atlas-mechanism{width:100%}
