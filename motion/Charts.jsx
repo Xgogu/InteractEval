@@ -1,6 +1,7 @@
 import React from 'react';
 import {AbsoluteFill, Easing, interpolate, useCurrentFrame, useVideoConfig} from 'remotion';
-import {IcebergMechanism,MovieMechanism,AgencyMechanism,InformationMechanism,PartnerMechanism,ArchitectureMechanism,MindMechanism,GroundingMechanism,AwarenessMechanism} from './Mechanisms.jsx';
+import {InformationMechanism,PartnerMechanism,ArchitectureMechanism} from './Mechanisms.jsx';
+import {IcebergMechanism,MovieMechanism,AgencyMechanism,MindMechanism,GroundingMechanism,AwarenessMechanism} from './VisualMechanisms.jsx';
 
 const paper=__PAPER__;
 const ink='#234e3b', rust='#a05b35', blue='#687994', muted='#52645b', line='#cbd5cb';

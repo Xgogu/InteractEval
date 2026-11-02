@@ -279,3 +279,6 @@ body select:not([multiple]):focus-visible{outline:2px solid #52765b;outline-offs
 @media(max-width:600px){.main-measure-selector{flex-direction:column;align-items:stretch;gap:14px}.main-measure-selector>.measure-select-field{width:100%}.main-rail-group button{font-size:13px;min-height:44px}.rail-measure-marker.has-code{font-size:10px}.main-rail-content>a:not(.main-mobile-compare-link){min-height:44px}.main-rail-content>a>svg{width:18px;height:18px}}
 html[data-ui-input=keyboard] select,html[data-ui-input=keyboard] select::picker-icon,html[data-ui-input=keyboard] select::picker(select),html[data-ui-input=keyboard] .main-rail-group>div{transition:none!important}
 @media(prefers-reduced-motion:reduce){body select:not([multiple]),body select:not([multiple])::picker-icon,body select:not([multiple])::picker(select),.main-rail-group summary:after,.main-rail-group[open]>div{transition:none!important}}
+
+.atlas-evidence-grid>.atlas-theory-visual{display:flex;align-items:center;background:#f5f8f1;border-radius:12px;padding:18px 8px}
+.atlas-theory-visual>.atlas-mechanism{width:100%}
