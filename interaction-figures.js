@@ -49,7 +49,7 @@ function systemArtwork(){
 
 function interactionFigure(kind){
  const why=kind==='motivation',id=why?'response-interaction':'system-overview';
- const title=why?'Why interact':'How we extract interaction';
+ const title=why?'Why interact':'How we extract';
  const description=why?'A relevant reply can leave the task unresolved. Follow what changes across the conversation.':'We reconstruct participant states and event trajectories, then evaluate each contribution in context.';
  const file=why?'response-interaction.html':'system-overview.html';
  return `<section id="${id}" class="article-section interaction-opening" aria-labelledby="${id}-heading"><header class="interaction-heading"><h2 id="${id}-heading">${title}</h2><p>${description}</p></header><figure class="interaction-figure"><div class="interaction-picture" data-interaction-figure="${kind}">${why?motivationArtwork():systemArtwork()}</div><figcaption><p data-interaction-caption>${why?'The user begins a reimbursement request.':'Three complementary lenses guide reconstruction.'}</p><a href="./${file}" target="_blank" rel="noopener" aria-label="View full figure: ${title}">View full figure &#8599;</a></figcaption></figure></section>`;
