@@ -50,14 +50,14 @@ function syncAtlasLayout(){
 function atlasResponsiveTables(){
  document.querySelectorAll('.comparison-data-table,.agent-results-table').forEach(table=>{
    const wrap=table.parentElement;if(wrap.dataset.atlasCards==='true')return;
-   const heads=[...table.querySelectorAll('thead th')].map(th=>th.textContent.trim());
+   const headerNodes=[...table.querySelectorAll('thead th')],heads=headerNodes.map(th=>th.textContent.trim());
    if(heads.length<2)return;
    const cards=document.createElement('div');cards.className='atlas-comparison-cards';
    for(const row of table.querySelectorAll('tbody tr')){
      const cells=[...row.children];if(cells.length!==heads.length)continue;
      const card=document.createElement('article'),name=document.createElement('div'),list=document.createElement('dl');
      name.className='atlas-comparison-identity';name.innerHTML=cells[0].innerHTML;card.append(name);
-     cells.slice(1).forEach((cell,i)=>{const item=document.createElement('div'),term=document.createElement('dt'),value=document.createElement('dd');term.textContent=heads[i+1];value.innerHTML=cell.innerHTML;item.append(term,value);list.append(item)});
+     cells.slice(1).forEach((cell,i)=>{const item=document.createElement('div'),term=document.createElement('dt'),value=document.createElement('dd');const identity=headerNodes[i+1].querySelector('.model-identity');if(identity)term.append(identity.cloneNode(true));else term.textContent=heads[i+1];value.innerHTML=cell.innerHTML;item.append(term,value);list.append(item)});
      card.append(list);cards.append(card);
    }
    wrap.dataset.atlasCards='true';wrap.classList.add('has-atlas-cards');wrap.after(cards);
