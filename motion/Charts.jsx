@@ -1,6 +1,6 @@
 import React from 'react';
 import {AbsoluteFill, Easing, interpolate, useCurrentFrame, useVideoConfig} from 'remotion';
-import {IcebergMechanism,MovieMechanism,AgencyMechanism,InformationMechanism,PartnerMechanism,ArchitectureMechanism} from './Mechanisms.jsx';
+import {IcebergMechanism,MovieMechanism,AgencyMechanism,InformationMechanism,PartnerMechanism,ArchitectureMechanism,MindMechanism,GroundingMechanism,AwarenessMechanism} from './Mechanisms.jsx';
 
 const paper=__PAPER__;
 const ink='#234e3b', rust='#a05b35', blue='#687994', muted='#52645b', line='#cbd5cb';
@@ -159,4 +159,4 @@ function ProbeChart({kind}){
 }
 export const StateProbeChart=()=> <ProbeChart kind="state"/>;
 export const TrajectoryProbeChart=()=> <ProbeChart kind="trajectory"/>;
-export const charts={'information-mechanism':InformationMechanism,'partner-mechanism':PartnerMechanism,'architecture-mechanism':ArchitectureMechanism,'iceberg-mechanism':IcebergMechanism,'movie-mechanism':MovieMechanism,'agency-mechanism':AgencyMechanism,state:StateProbeChart,trajectory:TrajectoryProbeChart,information:InformationChart,initiative:InitiativeChart,architecture:ArchitectureChart,partner:PartnerChart};
+export const charts={'mind-mechanism':MindMechanism,'grounding-mechanism':GroundingMechanism,'awareness-mechanism':AwarenessMechanism,'information-mechanism':InformationMechanism,'partner-mechanism':PartnerMechanism,'architecture-mechanism':ArchitectureMechanism,'iceberg-mechanism':IcebergMechanism,'movie-mechanism':MovieMechanism,'agency-mechanism':AgencyMechanism,state:StateProbeChart,trajectory:TrajectoryProbeChart,information:InformationChart,initiative:InitiativeChart,architecture:ArchitectureChart,partner:PartnerChart};
