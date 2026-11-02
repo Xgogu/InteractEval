@@ -97,11 +97,11 @@ const atlasMotionObserver=new IntersectionObserver(entries=>{
   if(!entry.isIntersecting)continue;
   atlasMotionObserver.unobserve(entry.target);
   if(matchMedia('(prefers-reduced-motion: reduce)').matches||document.documentElement.dataset.uiInput==='keyboard')continue;
-  const bars=entry.target.querySelectorAll('.comparison-bar-track>b');
+  const bars=entry.target.querySelectorAll('.comparison-bar-track>b,.architecture-gain-row>i>b,.journal-purpose-row>span>i');
   if(bars.length){bars.forEach((bar,i)=>{bar.style.transformOrigin=bar.closest('.is-signed')&&parseFloat(bar.style.left)<50?'right center':'left center';bar.animate([{transform:'scaleX(0)'},{transform:'scaleX(1)'}],{duration:420,delay:Math.min(i*25,200),easing:'cubic-bezier(.23,1,.32,1)',fill:'backwards'});});}
   else entry.target.querySelectorAll('tbody tr').forEach((row,i)=>row.animate([{opacity:.35},{opacity:1}],{duration:220,delay:i*18,easing:'cubic-bezier(.23,1,.32,1)',fill:'backwards'}));
  }
 },{threshold:.15});
 function atlasDataMotion(){
- document.querySelectorAll('.comparison-bars,.main-capability-wrap').forEach(el=>{if(!atlasMotionSeen.has(el)){atlasMotionSeen.add(el);atlasMotionObserver.observe(el);}});
+ document.querySelectorAll('.comparison-bars,.main-capability-wrap,.architecture-comparison-grid,.main-outcome-wrap,.comparison-table-wrap').forEach(el=>{if(!atlasMotionSeen.has(el)){atlasMotionSeen.add(el);atlasMotionObserver.observe(el);}});
 }

@@ -26,7 +26,7 @@ const leaderboardIds=()=>leaderboardGroups.flatMap(group=>group.items);
 function modelNameMarkup(name){return safe(name).replace(/-/g,'-<wbr>');}
 function modelIdentity(name){return `<span class="model-identity"><img src="${assets(name)}" alt=""/><span>${modelNameMarkup(name)}</span></span>`;}
 function mainRail(){
-  return `<aside class="article-rail main-results-rail" aria-label="Section navigation"><button type="button" class="main-rail-toggle" data-atlas-contents aria-expanded="false" aria-controls="main-rail-content">Contents <span aria-hidden="true">⌄</span></button><div id="main-rail-content" class="main-rail-content"><a href="#key-findings" data-research-section="key-findings" class="active">Key Findings</a><a href="#model-readout" data-research-section="model-readout">Model performance</a><a href="#process" data-research-section="process">Behavior & outcomes</a><a class="main-mobile-compare-link" href="#comparisons" data-research-section="comparisons">Measures</a><div class="main-rail-comparisons">${mainComparisonGroups.map(group=>`<details class="main-rail-group" data-main-rail-group="${group.id}" ${group.id===mainComparisonGroup&&['comparisons','partners','duration','architectures','scenarios','stages','reliability'].includes(location.hash.slice(1))?'open':''}><summary><span class="main-rail-family-label">${navigationIcon(group.icon)}<span>${group.title}</span></span></summary><div>${group.items.map(([id,label])=>`<button type="button" data-main-comparison="${id}" ${mainComparisonMeasure===id?'aria-current="true"':''}>${label}</button>`).join('')}</div></details>`).join('')}</div><a href="#illustrations" data-research-section="illustrations">Conversations</a></div></aside>`;
+  return `<aside class="article-rail main-results-rail" aria-label="Section navigation"><button type="button" class="main-rail-toggle" data-atlas-contents aria-expanded="false" aria-controls="main-rail-content">Contents <span aria-hidden="true">⌄</span></button><div id="main-rail-content" class="main-rail-content"><a href="#key-findings" data-research-section="key-findings" class="active">${navigationIcon('theory')}<span>Key Findings</span></a><a href="#model-readout" data-research-section="model-readout">${navigationIcon('overview')}<span>Model performance</span></a><a href="#process" data-research-section="process">${navigationIcon('behavior')}<span>Behavior & outcomes</span></a><a class="main-mobile-compare-link" href="#comparisons" data-research-section="comparisons">Measures</a><div class="main-rail-comparisons">${mainComparisonGroups.map(group=>`<details class="main-rail-group" name="main-measure-groups" data-main-rail-group="${group.id}" ${group.id===mainComparisonGroup&&['comparisons','partners','duration','architectures','scenarios','stages','reliability'].includes(location.hash.slice(1))?'open':''}><summary><span class="main-rail-family-label">${navigationIcon(group.icon)}<span>${group.title}</span></span></summary><div>${group.items.map(([id,label])=>`<button type="button" data-main-comparison="${id}" ${mainComparisonMeasure===id?'aria-current="true"':''}>${railMeasureLabel(id,label)}</button>`).join('')}</div></details>`).join('')}</div><a href="#illustrations" data-research-section="illustrations">${navigationIcon('conversation')}<span>Conversations</span></a></div></aside>`;
 }
 function capabilityMatrix(){
   const columns=['composite',...levelNames.map((_,index)=>'L'+(index+1))];
@@ -76,10 +76,14 @@ function metricComparison(id){
   const measure=metricOf(id),guide=measureGuide(id);
   return `<header class="comparison-reading"><h4>${safe(measure.label)}</h4><p>${safe(guide.meaning)}</p></header>${comparisonBars(id)}<p class="comparison-reading-note">${safe(guide.reading)}</p>`;
 }
+const stageCodes={stage0:'L1&ndash;L2',stage1:'L3&ndash;L4',stage2:'L5&ndash;L6',coherence:'Ratio'};
+const measureHints={stage0:'Keep the goal and use available information',stage1:'Make progress and respond in context',stage2:'Choose a direction and sustain it',coherence:'Follow-through relative to initiative',pairings:'Inspect every assistant and partner combination','pairing-summary':'Compare the mean and spread across assistants','architecture-purpose':'Task-oriented, mixed and open-ended settings','architecture-stages':'Compare gains across the three stages',information:'Sufficient, partial and insufficient information',repeats:'The same study repeated three times',judges:'The same interactions, different judges'};
+function railMeasureLabel(id,label){return `<span class="rail-measure-marker ${stageCodes[id]?'has-code':''}" aria-hidden="true">${stageCodes[id]||''}</span><span class="rail-measure-name">${label}</span>`;}
 function mainComparisonPanel(){
-  const group=mainComparisonGroups.find(group=>group.id===mainComparisonGroup);
-  return `<div class="main-measure-selector"><h3>${group.title}</h3><label>Measure<select id="main-comparison-select">${group.items.map(([id,label])=>`<option value="${id}" ${id===mainComparisonMeasure?'selected':''}>${label}</option>`).join('')}</select></label></div><div class="comparison-content">${mainComparisonContent()}</div>`;
+  const group=mainComparisonGroups.find(group=>group.id===mainComparisonGroup),rich=CSS.supports('appearance','base-select');
+  return `<div class="main-measure-selector"><h3>${navigationIcon(group.icon)}<span>${group.title}</span></h3><label class="measure-select-field"><span class="atlas-visually-hidden">Select a measure</span><select class="atlas-rich-select" id="main-comparison-select" aria-label="Select a measure">${rich?'<button type="button"><selectedcontent></selectedcontent></button>':''}${group.items.map(([id,label])=>`<option value="${id}" aria-label="${safe(label)}" ${id===mainComparisonMeasure?'selected':''}>${rich?`<span class="measure-option-icon ${stageCodes[id]?'has-code':''}" aria-hidden="true">${stageCodes[id]||navigationIcon(group.icon)}</span><span class="measure-option-copy"><span>${label}</span>${measureHints[id]?`<small>${measureHints[id]}</small>`:''}</span>`:label}</option>`).join('')}</select></label></div><div class="comparison-content">${mainComparisonContent()}</div>`;
 }
+
 function mainComparisonContent(){
   switch(mainComparisonMeasure){
     case 'pairings':return pairingMatrix();
@@ -115,7 +119,10 @@ function groupSizeComparison(){
 }
 function refreshMainComparison(scroll=false){
   const body=document.getElementById('main-comparison-body');if(!body)return;
+  const previousFocus=document.activeElement?.id;
   body.innerHTML=mainComparisonPanel();
+  if(previousFocus==='main-comparison-select')document.getElementById('main-comparison-select')?.focus({preventScroll:true});
+  if(document.documentElement.dataset.uiInput!=='keyboard'&&!matchMedia('(prefers-reduced-motion: reduce)').matches)body.querySelector('.comparison-content')?.animate([{opacity:.4},{opacity:1}],{duration:180,easing:'cubic-bezier(.23,1,.32,1)'});
   document.querySelectorAll('[data-main-family]').forEach(button=>button.setAttribute('aria-pressed',String(button.dataset.mainFamily===mainComparisonGroup)));
   document.querySelectorAll('[data-main-comparison]').forEach(button=>{if(button.dataset.mainComparison===mainComparisonMeasure)button.setAttribute('aria-current','true');else button.removeAttribute('aria-current');});
   document.querySelectorAll('[data-main-rail-group]').forEach(detail=>detail.open=detail.dataset.mainRailGroup===mainComparisonGroup);
@@ -145,7 +152,7 @@ document.addEventListener('click',event=>{
   const board=event.target.closest('[data-leaderboard-view]');if(board){view=board.dataset.leaderboardView;render();}
 });
 document.addEventListener('change',event=>{
-  if(event.target.id==='main-comparison-select')selectMainComparison(event.target.value);
+  if(event.target.id==='main-comparison-select'){selectMainComparison(event.target.value);document.getElementById('main-comparison-select')?.focus({preventScroll:true});}
   if(event.target.id==='leaderboard-measure'){metric=event.target.value;render();}
 });
 document.addEventListener('keydown',event=>{if(event.key==='Escape'&&selectedMainLevel){selectedMainLevel=null;document.querySelectorAll('.is-level-selected').forEach(cell=>cell.classList.remove('is-level-selected'));document.getElementById('main-level-note')?.setAttribute('hidden','');document.querySelectorAll('[data-main-level]').forEach(button=>button.setAttribute('aria-expanded','false'));}});
