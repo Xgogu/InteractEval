@@ -191,3 +191,25 @@ html[data-ui-input=keyboard] :is(button,summary):active{transform:none}
  :is(.atlas-finding-tabs>button,.atlas-mobile-switch>button,.atlas-mobile-model button,.main-rail-toggle,.main-comparison-tabs>button,.comparison-switch>button,.main-rail-group button),:is(.atlas-finding-tabs>button,.atlas-mobile-switch>button,.atlas-mobile-model button,.main-rail-toggle,.main-comparison-tabs>button,.comparison-switch>button,.main-rail-group button):active{transition:none;transform:none}
  .intro-turn-enter,.intro-reading-enter,.intro-turns .intro-follow-up{animation:none}
 }
+
+/* Findings and level explanations share the same compact reading surface. */
+.atlas-finding-tabs>button{min-height:68px}
+.atlas-finding-tabs>button[aria-selected=true]{box-shadow:inset 0 -2px 0 #234e3b}
+.main-level-note{position:static!important;top:auto!important;right:auto;width:100%;max-width:none;padding:18px 20px 20px;margin:0 0 18px;box-shadow:none;background:#f3f6f0;border:1px solid #d5ded5;border-radius:8px}
+.level-explanation-head{display:flex;align-items:center;justify-content:space-between;gap:12px;color:#52645b;font:500 13px/1.4 var(--sans)}
+.level-explanation-head>button{width:32px;height:32px;border:0;border-radius:50%;background:#e5ece2;color:#234e3b;font:22px/1 var(--sans);cursor:pointer}
+.level-explanation-tabs{display:flex;gap:5px;margin:9px 0 18px;flex-wrap:wrap}
+.level-explanation-tabs>button{min-width:44px;min-height:36px;border:1px solid transparent;border-radius:5px;padding:7px 12px;background:none;color:#52645b;font:500 13px/1 var(--sans);cursor:pointer}
+.level-explanation-tabs>button[aria-pressed=true]{background:#234e3b;color:#fff}
+.level-explanation-body{display:grid;grid-template-columns:1.3fr 1fr;gap:18px 24px;align-items:start}
+.main-level-note h3{font:500 21px/1.25 var(--sans);letter-spacing:-.4px;margin:0 0 9px}
+.main-level-note p{font:400 14px/1.65 var(--sans);margin:0;color:#435b4d}
+.level-example{padding-left:18px;border-left:2px solid #a2b69c}
+.level-example>span,.level-score-span>span{display:block;font:500 12px/1.4 var(--sans);color:#52645b;margin-bottom:6px}
+.level-score-span{grid-column:1/-1;display:grid;grid-template-columns:auto 1fr 1.3fr auto;gap:14px;align-items:center;border-top:1px solid #d5ded5;padding-top:14px}
+.level-score-span>span{margin:0}.level-score-span strong{font:500 16px/1 var(--sans);font-variant-numeric:tabular-nums}.level-score-span strong i{font-style:normal;color:#839181}.level-score-span small{font:12px var(--sans);color:#52645b}
+.level-score-span>div{height:6px;background:#dfe7db;border-radius:3px;position:relative}.level-score-span b{position:absolute;top:0;height:6px;min-width:3px;background:#52765b;border-radius:3px}
+.results-page .main-capability-table td.is-level-selected{box-shadow:inset 2px 0 #52765b,inset -2px 0 #52765b}
+.main-capability-table thead button[aria-expanded=true]{background:#e5ece2;border-radius:5px}
+@media(hover:hover) and (pointer:fine){.level-explanation-tabs>button:not([aria-pressed=true]):hover{background:#e5ece2}.level-explanation-head>button:hover{background:#d9e4d4}}
+@media(max-width:600px){.atlas-finding-tabs{grid-template-columns:repeat(2,minmax(0,1fr))}.atlas-finding-tabs>button{min-height:72px;flex-direction:row;align-items:center;font-size:12px;gap:8px}.atlas-finding-tabs svg{width:26px;height:26px}.main-level-note{padding:14px;margin-bottom:15px}.level-explanation-body{grid-template-columns:1fr;gap:15px}.level-example{padding-left:12px}.level-score-span{grid-template-columns:1fr 1fr;gap:10px}.level-score-span>div{grid-column:1/-1;grid-row:2}.level-score-span small{grid-column:1/-1}.level-explanation-tabs{gap:3px}.level-explanation-tabs>button{padding-inline:9px;min-height:44px;min-width:38px}}

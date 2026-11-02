@@ -87,3 +87,39 @@ export function AgencyMechanism(){
   <Step x={338} y={204} w={132} h={66} lines={['Verify','fix']} start={2.2} highlight/>
  </svg></AbsoluteFill>;
 }
+
+
+export function InformationMechanism(){
+ return <AbsoluteFill style={base}><svg viewBox="0 0 480 300" role="img" aria-label="Incomplete evidence can invite assumptions; a known gap invites a question.">
+  <text x="12" y="28" fontSize="21" fill={muted}>Two ways information can be missing</text>
+  <Step x={12} y={57} w={180} h={66} lines={['Partial picture']} start={.2}/>
+  <DrawPath d="M200 90h65m-7-6 7 6-7 6" start={.6} end={1.2} color={rust}/>
+  <Step x={276} y={57} w={192} h={66} lines={['Fill in the gaps?']} start={1.2} tone={rust} highlight/>
+  <Step x={12} y={176} w={180} h={66} lines={['Explicit gap']} start={.2}/>
+  <DrawPath d="M200 209h65m-7-6 7 6-7 6" start={.6} end={1.2}/>
+  <Step x={276} y={176} w={192} h={66} lines={['Ask for evidence']} start={1.2} highlight/>
+  <text x="12" y="282" fontSize="19" fill={muted}>Conceptual reading of the matched comparison</text>
+ </svg></AbsoluteFill>;
+}
+export function PartnerMechanism(){
+ return <AbsoluteFill style={base}><svg viewBox="0 0 480 300" role="img" aria-label="A partner's question changes the evidence available to the same assistant.">
+  <text x="12" y="28" fontSize="21" fill={muted}>The partner shapes the next turn</text>
+  <Step x={12} y={62} w={175} h={62} lines={['Partner asks']} start={.2}/>
+  <DrawPath d="M195 93h80m-7-6 7 6-7 6" start={.6} end={1.3}/>
+  <Step x={285} y={62} w={183} h={62} lines={['New evidence']} start={1.3}/>
+  <DrawPath d="M376 130v50m-6-7 6 7 6-7" start={1.7} end={2.3}/>
+  <Step x={285} y={189} w={183} h={62} lines={['Assistant acts']} start={2.3} highlight/>
+  <DrawPath d="M277 221H100V132m-6 7 6-7 6 7" start={2.6} end={3.6} color={rust}/>
+  <text x="12" y="285" fontSize="19" fill={muted}>Same assistant, a different course of interaction</text>
+ </svg></AbsoluteFill>;
+}
+export function ArchitectureMechanism(){
+ return <AbsoluteFill style={base}><svg viewBox="0 0 480 300" role="img" aria-label="Architectures add different supports to the same base model; gains depend on interaction purpose.">
+  <text x="12" y="28" fontSize="21" fill={muted}>Same base, different support</text>
+  <Step x={12} y={106} w={140} h={66} lines={['Base model']} start={.2}/>
+  <DrawPath d="M157 139h40V80h38m-7-6 7 6-7 6M197 139v67h38m-7-6 7 6-7 6" start={.6} end={1.6}/>
+  <Step x={245} y={48} w={220} h={66} lines={['Task support']} start={1.6} highlight/>
+  <Step x={245} y={174} w={220} h={66} lines={['Relational support']} start={1.6} highlight tone={rust}/>
+  <text x="12" y="285" fontSize="19" fill={muted}>Compare gains within each interaction purpose</text>
+ </svg></AbsoluteFill>;
+}
